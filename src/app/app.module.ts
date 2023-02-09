@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProduitComponent } from './produit/produit.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PrimeNgModule } from 'src/modules/PrimeNgModule';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     RoutingModule,
     MaterialModule,
     HttpClientModule,
+    PrimeNgModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
