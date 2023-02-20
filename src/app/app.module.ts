@@ -9,6 +9,7 @@ import { ProduitComponent } from './produit/produit.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PrimeNgModule } from 'src/modules/PrimeNgModule';
 import { CreerproduitComponent } from './creerproduit/creerproduit.component';
+import { Dialog } from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { CreerproduitComponent } from './creerproduit/creerproduit.component';
     HttpClientModule,
     PrimeNgModule,
   ],
-  providers: [],
+  providers: [Dialog],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

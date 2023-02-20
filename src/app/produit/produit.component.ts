@@ -1,17 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../models/Product';
 import { Image } from '../models/image';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
-
 import { Dialog } from 'primeng/dialog';
 
-interface People {
-  firstname?: string;
-  lastname?: string;
-  age?: string;
-}
+
 @Component({
   selector: 'app-produit',
   templateUrl: './produit.component.html',
@@ -22,11 +16,10 @@ export class ProduitComponent implements OnInit {
   public produit :Product = new Product();
   display : boolean ; 
   displayBasic : boolean = false ; 
-  selectedObject: Product = new Product();
   displayBasic3 :Boolean = false;
   selectedProduct: Product = new Product();
 
-  constructor(private httpClient : HttpClient ) {
+  constructor(private httpClient : HttpClient) {
 
   
   }
@@ -36,7 +29,7 @@ export class ProduitComponent implements OnInit {
 
    
   }
-
+  
   
   showBasicDialog() {
     this.display = true;
@@ -49,12 +42,8 @@ export class ProduitComponent implements OnInit {
   showBasicDialog3(produit:Product){
     this.displayBasic3 = true ;
     this.selectedProduct =produit ;
-console.log(this.selectedProduct) ;
+   console.log(this.selectedProduct) ;
   }
-
-  // cancel() {
-  //   this.ref.close();
-  // }
 
 public getProduct(): Observable<Product[]> {
   const url = 'http://localhost:8080/getProduct';
@@ -72,9 +61,7 @@ AfficherListProduct(): void {
 
 
 modifierProduit(produit: Product){
-
-  
-  let url ="http://localhost:8080/ajouterProduct"
+ let url ="http://localhost:8080/ajouterProduct"
   this.httpClient.post(url ,this.selectedProduct).toPromise().then((data : any)=>{
     this.AfficherListProduct();
     console.log(data)
@@ -86,28 +73,21 @@ modifierProduit(produit: Product){
 
 
 ajouterrProduit(){
-
-  let images :Image[] = [] ;
+ let images :Image[] = [] ;
   this.produit.images = images
  let url ="http://localhost:8080/ajouterProduct"
   this.httpClient.post(url ,this.produit).toPromise().then((data : any)=>{
-   
-    this.AfficherListProduct();
-    
+   this.AfficherListProduct();
     console.log(data)
   })
 }
 
 supprimerProduit(produit:Product){
-  
-
   let url ="http://localhost:8080/supprimerProduct"
   this.httpClient.post(url ,this.selectedProduct ).toPromise().then((data : any)=>{
     console.log(data)
     this.AfficherListProduct() ; 
   })
-
-
 }
 
 

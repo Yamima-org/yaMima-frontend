@@ -65,7 +65,7 @@
 	<ng-template pTemplate="body" let-produit >
 		<tr>
 			<td>
-				{{ produit.nameProduct }}
+				{{ produit.nameproduct }}
 			</td>
 			<td>
 				{{ produit.ingredients }}
@@ -129,7 +129,7 @@
 									   </div>
 					<ng-template pTemplate="footer">
 						<p-button icon="pi pi-check" (click)="modifierProduit(produit)" label="Yes" styleClass="p-button-text"></p-button>
-						<p-button icon="pi pi-times" (click)="display=false" label="No"></p-button>
+						<p-button icon="pi pi-times" (click)="displayBasic3=false" label="No"></p-button>
 					</ng-template>
 				</p-dialog>
                
@@ -144,7 +144,7 @@
 						</ng-template>
 						<ng-template pTemplate="footer">
 							<p-button icon="pi pi-check" (click)="supprimerProduit(produit)" label="Yes" styleClass="p-button-text"></p-button>
-							<p-button icon="pi pi-times" (click)="display=false" label="No"></p-button>
+							<p-button icon="pi pi-times" (click)="displayBasic=false" label="No"></p-button>
 						</ng-template>
 					</p-dialog>
 				</td>			 
