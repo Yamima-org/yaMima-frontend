@@ -2,6 +2,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../models/Product';
+import { Image } from '../models/image';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
+
+import { Dialog } from 'primeng/dialog';
+
 interface People {
   firstname?: string;
   lastname?: string;
@@ -14,66 +19,42 @@ interface People {
 })
 export class ProduitComponent implements OnInit {
  listProduct : Product[] = [];
-tableData:  People[] = [];
-    cols: any[] = [];
+  public produit :Product = new Product();
+  display : boolean ; 
+  displayBasic : boolean = false ; 
+  selectedObject: Product = new Product();
+  displayBasic3 :Boolean = false;
+  selectedProduct: Product = new Product();
+
+  constructor(private httpClient : HttpClient ) {
+
   
-  constructor(private httpClient : HttpClient) {
   }
 
   ngOnInit(): void {
     this.AfficherListProduct() ;
-    this.cols = [
-      {
-          field: 'nameProduct',
-          header: 'Nom Prodduit'
-      },
-      {
-          field: 'ingredients',
-          header: 'Ingredients'
-      },
-      {
-          field: 'price',
-          header: 'Prix'
-      },
-      {
-          field: 'statut',
-          header: 'Statut'
-      },
-      {
-          field: 'sizeProduct',
-          header: 'Taille Produit'
-      },
-      {
-          field: 'description',
-           header: 'Description'
-      },
-  ];
-  this.tableData = [
-    {
-        firstname: 'David',
-        lastname: 'ace',
-        age: '40',
-    },
-    {
-        firstname: 'AJne',
-        lastname: 'west',
-        age: '40',
-    },
-    {
-        firstname: 'Mak',
-        lastname: 'Lame',
-        age: '40',
-    },
-    {
-        firstname: 'Peter',
-        lastname: 'raw',
-        age: '40',
-  },]
+
+   
   }
 
   
+  showBasicDialog() {
+    this.display = true;
+}
+  showBasicDialog2(produit:Product){
+   this.displayBasic = true ;
+   this.selectedProduct =produit ;
 
+  }
+  showBasicDialog3(produit:Product){
+    this.displayBasic3 = true ;
+    this.selectedProduct =produit ;
+console.log(this.selectedProduct) ;
+  }
 
+  // cancel() {
+  //   this.ref.close();
+  // }
 
 public getProduct(): Observable<Product[]> {
   const url = 'http://localhost:8080/getProduct';
@@ -87,4 +68,48 @@ AfficherListProduct(): void {
     
   })
 }
+
+
+
+modifierProduit(produit: Product){
+
+  
+  let url ="http://localhost:8080/ajouterProduct"
+  this.httpClient.post(url ,this.selectedProduct).toPromise().then((data : any)=>{
+    this.AfficherListProduct();
+    console.log(data)
+  })
+
+}
+
+
+
+
+ajouterrProduit(){
+
+  let images :Image[] = [] ;
+  this.produit.images = images
+ let url ="http://localhost:8080/ajouterProduct"
+  this.httpClient.post(url ,this.produit).toPromise().then((data : any)=>{
+   
+    this.AfficherListProduct();
+    
+    console.log(data)
+  })
+}
+
+supprimerProduit(produit:Product){
+  
+
+  let url ="http://localhost:8080/supprimerProduct"
+  this.httpClient.post(url ,this.selectedProduct ).toPromise().then((data : any)=>{
+    console.log(data)
+    this.AfficherListProduct() ; 
+  })
+
+
+}
+
+
+ 
 }

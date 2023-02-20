@@ -8,11 +8,13 @@ import { AppComponent } from './app.component';
 import { ProduitComponent } from './produit/produit.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PrimeNgModule } from 'src/modules/PrimeNgModule';
+import { CreerproduitComponent } from './creerproduit/creerproduit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProduitComponent ,
+    ProduitComponent,
+    CreerproduitComponent ,
   ],
   imports: [
     BrowserModule,
