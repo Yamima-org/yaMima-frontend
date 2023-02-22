@@ -4,6 +4,9 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
  import { DialogModule } from "primeng/dialog";
  import {InputTextModule} from 'primeng/inputtext';
  import { DynamicDialogModule } from 'primeng/dynamicdialog';
+ import {DropdownModule} from 'primeng/dropdown';
+ import { InputTextareaModule } from 'primeng/inputtextarea';
+ import {ToggleButtonModule} from 'primeng/togglebutton';
 
 
 
@@ -14,6 +17,9 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
          DialogModule, 
          InputTextModule,
          DynamicDialogModule,
+         DropdownModule,
+         InputTextareaModule ,
+         ToggleButtonModule,
     ],
     exports: [
          TableModule,
@@ -21,6 +27,9 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
          DialogModule,
          InputTextModule,
          DynamicDialogModule,
+         DropdownModule,
+         InputTextareaModule,
+         ToggleButtonModule,
     ],
     declarations: [],
     schemas: [

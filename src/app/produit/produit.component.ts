@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Product } from '../models/Product';
 import { Image } from '../models/image';
 import { Dialog } from 'primeng/dialog';
+import { SizeProduct } from '../models/sizeProduct';
 
 
 @Component({
@@ -18,9 +19,16 @@ export class ProduitComponent implements OnInit {
   displayBasic : boolean = false ; 
   displayBasic3 :Boolean = false;
   selectedProduct: Product = new Product();
+  selectedSize = [
+    { label: 'Small', value: 'S' },
+    { label: 'Medium', value: 'M' },
+    { label: 'Large', value: 'L' }
+  ];
+  selectedValue: any;
+  textValue : string ; 
+  checked: boolean = false ;
 
   constructor(private httpClient : HttpClient) {
-
   
   }
 
@@ -70,11 +78,32 @@ modifierProduit(produit: Product){
 }
 
 
+statutProd(produit : Product){
+  if (this.checked== true){
+    this.produit.statut = "Available"
+  }
+  else {
+    this.produit.statut ="NotEvailable"
+  }
+}
 
+SizeProd(produit : Product){
+  if (this.selectedValue == "S"){
+    this.produit.sizeproduct = "Small"
+  }
+  else if (this.selectedValue == "M"){
+  this.produit.sizeproduct = "Medium"
+}
+else {
+  this.produit.sizeproduct = "Large"
+}
+}
 
 ajouterrProduit(){
  let images :Image[] = [] ;
   this.produit.images = images
+ this.statutProd(this.produit);
+ this.SizeProd(this.produit);
  let url ="http://localhost:8080/ajouterProduct"
   this.httpClient.post(url ,this.produit).toPromise().then((data : any)=>{
    this.AfficherListProduct();

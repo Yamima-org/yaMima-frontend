@@ -14,9 +14,9 @@
 		</span>
 		</div>
 		<div>
-		<span class="p-float-label">
-			<input id="ingredients" type="text" pInputText [(ngModel)] = "produit.ingredients" > 
-			 <label for="ingredients">Ingredients</label> 
+			<span class="p-float-label" >
+			<h4>Ingredients</h4>
+			<textarea rows="5" cols="30" pInputTextarea [(ngModel)]="produit.ingredients"></textarea>
 		</span>
 		</div>
 		<div>
@@ -27,14 +27,16 @@
 			</div>
 			<div>
 				<span class="p-float-label">
-					<input id="statut" type="text" pInputText [(ngModel)] = "produit.statut" > 
-					 <label for="statut">Statut</label> 
-				</span>
+					<h4>Taille  DE Produit </h4>
+					<p-dropdown [options]="selectedSize" [(ngModel)]="selectedValue" ></p-dropdown>
+
+					
+		         </span>
 				</div>
 				<div>
-					<span class="p-float-label">
-						<input id="sizeProduct" type="text" pInputText [(ngModel)] = "produit.sizeproduct" > 
-						 <label for="sizeProduct">Taille Produit</label> 
+					<span class="p-float-label" >
+						<p-toggleButton onLabel="Available" offLabel="NotEvailable" 
+						onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right" [(ngModel)]="checked"></p-toggleButton>						
 					</span>
 					</div>
 					<div>
