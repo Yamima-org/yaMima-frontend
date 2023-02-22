@@ -2,10 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../models/Product';
-import { Image } from '../models/image';
-import { Dialog } from 'primeng/dialog';
 import { SizeProduct } from '../models/sizeProduct';
-
 
 @Component({
   selector: 'app-produit',
@@ -15,9 +12,9 @@ import { SizeProduct } from '../models/sizeProduct';
 export class ProduitComponent implements OnInit {
  listProduct : Product[] = [];
   public produit :Product = new Product();
-  display : boolean ; 
-  displayBasic : boolean = false ; 
-  displayBasic3 :Boolean = false;
+  display : boolean ;
+  displayBasic : boolean = false ;
+  displayBasic3 : boolean = false;
   selectedProduct: Product = new Product();
   selectedSize = [
     { label: 'Small', value: 'S' },
@@ -34,11 +31,9 @@ export class ProduitComponent implements OnInit {
 
   ngOnInit(): void {
     this.AfficherListProduct() ;
-
-   
   }
-  
-  
+
+
   showBasicDialog() {
     this.display = true;
 }
@@ -54,7 +49,7 @@ export class ProduitComponent implements OnInit {
   }
 
 public getProduct(): Observable<Product[]> {
-  const url = 'http://localhost:8080/getProduct';
+  const url = 'http://localhost:8033/getProduct';
   return this.httpClient.get<Product[]>(url);
 }
 
@@ -62,22 +57,14 @@ AfficherListProduct(): void {
   this.getProduct().subscribe(product=>{
     this.listProduct = product
   console.log(this.listProduct);
-    
+
   })
 }
 
 
-
-modifierProduit(produit: Product){
- let url ="http://localhost:8080/ajouterProduct"
-  this.httpClient.post(url ,this.selectedProduct).toPromise().then((data : any)=>{
-    this.AfficherListProduct();
-    console.log(data)
-  })
-
-}
-
-
+ajouterOumodifierProduit(produit: Product){
+ let url ="http://localhost:8033/ajouterProduct"
+  this.httpClient.post(url ,produit).toPromise().then((data : any)=>{
 statutProd(produit : Product){
   if (this.checked== true){
     this.produit.statut = "Available"
@@ -86,7 +73,6 @@ statutProd(produit : Product){
     this.produit.statut ="NotEvailable"
   }
 }
-
 SizeProd(produit : Product){
   if (this.selectedValue == "S"){
     this.produit.sizeproduct = "Small"
@@ -98,27 +84,21 @@ else {
   this.produit.sizeproduct = "Large"
 }
 }
-
-ajouterrProduit(){
- let images :Image[] = [] ;
-  this.produit.images = images
  this.statutProd(this.produit);
  this.SizeProd(this.produit);
- let url ="http://localhost:8080/ajouterProduct"
-  this.httpClient.post(url ,this.produit).toPromise().then((data : any)=>{
-   this.AfficherListProduct();
+    this.AfficherListProduct();
     console.log(data)
   })
 }
 
-supprimerProduit(produit:Product){
-  let url ="http://localhost:8080/supprimerProduct"
+supprimerProduit(){
+  let url ="http://localhost:8033/supprimerProduct"
   this.httpClient.post(url ,this.selectedProduct ).toPromise().then((data : any)=>{
     console.log(data)
-    this.AfficherListProduct() ; 
+    this.AfficherListProduct() ;
   })
 }
 
 
- 
+
 }
