@@ -22,11 +22,11 @@ export class ProduitComponent implements OnInit {
     { label: 'Large', value: 'L' }
   ];
   selectedValue: any;
-  textValue : string ; 
+  textValue : string ;
   checked: boolean = false ;
 
   constructor(private httpClient : HttpClient) {
-  
+
   }
 
   ngOnInit(): void {
@@ -49,7 +49,7 @@ export class ProduitComponent implements OnInit {
   }
 
 public getProduct(): Observable<Product[]> {
-  const url = 'http://localhost:8033/getProduct';
+  const url = 'http://localhost:8080/getProduct';
   return this.httpClient.get<Product[]>(url);
 }
 
@@ -63,8 +63,15 @@ AfficherListProduct(): void {
 
 
 ajouterOumodifierProduit(produit: Product){
- let url ="http://localhost:8033/ajouterProduct"
+ let url ="http://localhost:8080/ajouterProduct"
   this.httpClient.post(url ,produit).toPromise().then((data : any)=>{
+ this.statutProd(this.produit);
+ this.SizeProd(this.produit);
+    this.AfficherListProduct();
+    console.log(data)
+  })
+}
+
 statutProd(produit : Product){
   if (this.checked== true){
     this.produit.statut = "Available"
@@ -73,6 +80,7 @@ statutProd(produit : Product){
     this.produit.statut ="NotEvailable"
   }
 }
+
 SizeProd(produit : Product){
   if (this.selectedValue == "S"){
     this.produit.sizeproduct = "Small"
@@ -84,15 +92,9 @@ else {
   this.produit.sizeproduct = "Large"
 }
 }
- this.statutProd(this.produit);
- this.SizeProd(this.produit);
-    this.AfficherListProduct();
-    console.log(data)
-  })
-}
 
 supprimerProduit(){
-  let url ="http://localhost:8033/supprimerProduct"
+  let url ="http://localhost:8080/supprimerProduct"
   this.httpClient.post(url ,this.selectedProduct ).toPromise().then((data : any)=>{
     console.log(data)
     this.AfficherListProduct() ;
