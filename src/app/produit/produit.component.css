@@ -55,3 +55,10 @@ a:hover {
   .navbar li ul li a:hover {
     background-color: #a3a1a1;
   }
+
+  .error-message {
+    color: violet;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  

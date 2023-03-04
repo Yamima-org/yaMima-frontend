@@ -7,11 +7,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProduitComponent } from './produit/produit.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PrimeNgModule } from 'src/modules/PrimeNgModule';
+import { CreerproduitComponent } from './creerproduit/creerproduit.component';
+import { Dialog } from 'primeng/dialog';
+import { DialogService } from 'primeng/dynamicdialog';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { ProduitServiceService } from './produit-service.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProduitComponent ,
+    ProduitComponent,
+    CreerproduitComponent ,
   ],
   imports: [
     BrowserModule,
@@ -19,8 +27,11 @@ import { HttpClientModule } from '@angular/common/http';
     RoutingModule,
     MaterialModule,
     HttpClientModule,
+    PrimeNgModule,
+    ToastModule,
+
   ],
-  providers: [],
+  providers: [Dialog ,DialogService ,MessageService ,ProduitServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

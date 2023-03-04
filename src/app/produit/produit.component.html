@@ -1,53 +1,180 @@
-<title>produit works!</title>
-<div id="wrap">
-    <ul class="navbar">
-      <li>
-        <a href="#">Accueil</a>
-      </li>
-      <li>
-        <a href="#">Livres</a>
-        <ul>
-          <li><a href="#">Apprendre HTML</a></li>
-          <li><a href="#">Apprendre CSS</a></li>
-          <li><a href="#">Apprendre JavaScript</a></li>
-          <li><a href="#">Apprendre PHP</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">Questionnaires</a>
-        <ul>
-          <li><a href="#">CSS de Base</a></li>
-          <li><a href="#">PHP de Base</a></li>
-          <li><a href="#">JavaScript de Base</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">Outils</a>
-        <ul>
-          <li><a href="#">Images géométriques</a></li>
-          <li><a href="#">Pipette de Couleurs</a></li>
-          <li><a href="#">Générateur de Code</a></li>
-          <li><a href="#">Éditeur HTML</a></li>
-          <li><a href="#">Base 64</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">Snnipets</a>
-        <ul>
-          <li><a href="#">CSS</a></li>
-          <li><a href="#">JavaScript</a></li>
-          <li><a href="#">Angular</a></li>
-          <li><a href="#">Java</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">Fonctions de Chaîne</a>
-        <ul>
-          <li><a href="#">Inverse de chaîne</a></li>
-          <li><a href="#">Encodeur d'URL</a></li>
-          <li><a href="#">Décapant des lignes vides</a></li>
-          <li><a href="#">Compte des mots de chaîne</a></li>
-        </ul>
-      </li>
-    </ul>
-  </div>
+<h2 style="color: black">
+	Tableau des produits
+</h2>
+ <p-button (click)="showBasicDialog()" icon="pi pi-plus" label="Ajouter" iconPos="right" ></p-button>
+
+	<p-dialog [(visible)]="display" [style]="{width: '50vw'}" [baseZIndex]="10000" #myDialog>
+		<ng-template pTemplate="header" >
+			Ajouter Produit
+		</ng-template>
+	
+		<div >
+		<h4>Nom DU produit</h4>
+			 <span class="p-float-label"  >
+			<input id="nameproduct" [formControl] ="nomProduit" type="text" [maxlength]="15"  pInputText [(ngModel)] = "produit.nameproduct"  >
+			<div class="error-message">Champ Obligatoire*</div>
+
+		</span>
+		</div>
+		<div>
+			<span class="p-float-label" >
+			<h4>Ingredients</h4>
+			<textarea rows="5" cols="30" pInputTextarea [(ngModel)]="produit.ingredients" required></textarea>
+		</span>
+		</div>
+		<div>
+			<h4>Prix</h4>
+			<span class="p-float-label">
+
+			<input id="price" type="text" [formControl] ="prix" pInputText [(ngModel)] = "produit.price" > 
+			<div class="error-message">Champ Obligatoire*</div>
+
+			</span>
+			</div>
+			<div>
+				<span class="p-float-label">
+					<h4>Taille DU Produit </h4>
+					<p-dropdown [options]="selectedSize" [formControl]="size" placeholder="-- Sélectionnez une option --" [(ngModel)]="selectedValue"  optionLabel="label"  [required]="true"></p-dropdown>
+					<div class="error-message">Champ Obligatoire*</div>
+
+				 </span>
+				</div>
+				<div>
+					<h4> Statut</h4>
+					<span class="p-float-label" >
+						<p-toggleButton onLabel="Disponible" offLabel="Non Disponible" [formControl]="statut"
+    onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right" [(ngModel)]="selectedProduct.statut" required></p-toggleButton>	
+	<div class="error-message">Champ Obligatoire*</div>
+				
+					</span>
+					</div>
+					<div>
+						<h4> Description </h4>
+						<span class="p-float-label">
+							<input id="description" [formControl]="description" type="text" pInputText [(ngModel)] = "produit.description"  >
+						</span>
+						</div>
+					
+		<ng-template pTemplate="footer">
+			<p-button icon="pi pi-check"  (click)="ajouterOumodifierProduit(produit)" label="Yes" styleClass="p-button-text" [disabled]=" !prix.valid || !nomProduit.valid || !statut.valid || !size.valid"></p-button>
+			<p-button icon="pi pi-times" (click)="closeDialog()" label="No"></p-button>
+		</ng-template>
+	</p-dialog>
+<p-toast></p-toast>
+<p-table #myTab [value]="listProduct">
+	<ng-template pTemplate="header">
+		<tr>
+			<th>Nom Prodduit</th>
+			<th>Ingredients</th>
+			<th> Prix</th>
+			<th>Statut</th>
+			<th>Taille Produit</th>
+			<th>Description</th>
+			<th>Modifier</th>
+			<th>Supprimer</th>
+		</tr>
+	</ng-template>
+
+	<ng-template pTemplate="body" let-produit >
+		<tr>
+			<td>
+				{{ produit.nameproduct }}
+			</td>
+			<td>
+				{{ produit.ingredients }}
+			</td>
+			<td>
+				{{ produit.price }}
+			</td>
+			<td>
+				{{ produit.statut ? 'Available' : 'Not Available' }}
+			</td>
+			<td>
+				{{ produit.sizeproduct == 'L' ? 'Large' : produit.sizeproduct == 'S' ? 'Small' : 'Medium' }}
+
+			</td>
+			<td>
+				{{ produit.description }}
+			</td>
+			<td>
+				<p-button (click)="showBasicDialog3(produit)" icon="pi pi-user-edit" label="Modifier" iconPos="right" ></p-button>
+				<p-dialog [(visible)]="displayBasic3" [style]="{width: '50vw'}" [baseZIndex]="10000"  [modal]="true" [responsive]="true" #myDialog2>
+
+					<ng-template pTemplate="header" let-produit >
+						Modifier Produit
+					</ng-template>
+					<div class="form-group"   >
+						<span class="p-float-label"   >
+						   <input id="nameproduct" [maxlength]="15" type="text" [formControl]="nomProduit" pInputText [(ngModel)] = " selectedProduct.nameproduct" required >
+						   <div class="error-message">Champ Obligatoire*</div>
+						</span>
+					   </div>
+
+					   <div>
+						<span class="p-float-label" >
+						<h4>Ingredients</h4>
+						<textarea rows="5" cols="30" pInputTextarea [(ngModel)]="selectedProduct.ingredients"></textarea>
+					</span>
+					</div>
+					   <div>
+						<h4> Prix </h4>
+						   <span class="p-float-label">
+							   <input id="price" type="text" [formControl]="prix" pInputText [(ngModel)] = "selectedProduct.price" >
+							   <div class="error-message">Champ Obligatoire*</div>
+							</span>
+						   </div>
+                       <div>
+					    <span class="p-float-label">
+							<h4>Taille  DE Produit </h4>
+							<p-dropdown [options]="selectedSize"   [(ngModel)]="selectedProduct.sizeproduct" [formControl]="size" [required]="true" ></p-dropdown>
+							<div class="error-message">Champ Obligatoire*</div>
+
+							 </span>
+								</div>
+								<div>
+									<h4> Statut</h4>
+									<span class="p-float-label" >
+										<p-toggleButton onLabel="Disponible" offLabel="Non Disponible" [formControl]="statut"
+										onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right"  [(ngModel)]="selectedProduct.statut" required></p-toggleButton>	
+										<div class="error-message">Champ Obligatoire*</div>
+					
+									</span>
+									</div>
+								   <div> 
+									<h4> Description </h4>
+									   <span class="p-float-label">
+										   <input id="description" type="text"  pInputText [(ngModel)] = " selectedProduct.description" >
+
+									   </span>
+									   </div>
+
+					<ng-template pTemplate="footer">
+						<p-button icon="pi pi-check" (click)="modidfierProduit(selectedProduct)" label="Yes" styleClass="p-button-text" [disabled]="!prix.valid || !nomProduit.valid || !statut.valid || !size.valid "></p-button>
+						<p-button icon="pi pi-times" (click)="closeDialog2()" label="No"></p-button>
+					</ng-template>
+				</p-dialog>
+				<p-toast></p-toast>
+
+			</td>
+
+				 <td>
+					<p-button (click)="showBasicDialog2(produit)" icon="pi pi-trash" label="Supprimer" iconPos="right" ></p-button>
+					<p-dialog [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000" #myDialog3>
+
+						<ng-template pTemplate="header" >
+							Supprimer Produit
+						</ng-template>
+						<ng-template pTemplate="footer">
+							<p-button icon="pi pi-check" (click)="supprimerProduit(selectedProduct)" label="Yes" styleClass="p-button-text"></p-button>
+							<p-button icon="pi pi-times" (click)="closeDialog3()" label="No"></p-button>
+						</ng-template>
+					</p-dialog>
+					<p-toast></p-toast>
+
+				</td>
+		</tr>
+	</ng-template>
+</p-table>
+
+
+
