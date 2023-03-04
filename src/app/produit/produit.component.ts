@@ -28,10 +28,19 @@ export class ProduitComponent implements OnInit {
     { label: 'Large', value: 'L' }
   ];
   selectedValue: any ;
+  textValue : string ; 
   checked: boolean = false ;
   @ViewChild('myDialog') myDialog: Dialog;
-  
+  @ViewChild('myDialog') myDialog2: Dialog;
+  @ViewChild('myDialog') myDialog3: Dialog;
 
+  nomProduit = new FormControl('', Validators.required);
+  prix = new FormControl('', Validators.required);
+  description = new FormControl('', Validators.required);
+  size = new FormControl('', Validators.required);
+  statut = new FormControl('', Validators.required);
+
+  
   constructor(private httpClient : HttpClient , private produitService : ProduitServiceService ,private dialogService: DialogService,
     private messageService: MessageService
     ) {
@@ -100,7 +109,16 @@ else {
 closeDialog() {
   this.myDialog.close(new Event(''));
 }
- 
+
+closeDialog2() {
+  this.displayBasic3 = false ;
+
+  this.myDialog2.close(new Event(''));
+}
+closeDialog3() {
+  this.displayBasic = false ;
+  this.myDialog3.close(new Event(''));
+}
 
 showMessage(severity: string, summary: string) {
   this.messageService.add({
@@ -112,8 +130,20 @@ showMessage(severity: string, summary: string) {
 
 
 
-modidfierProduit(){
+modidfierProduit(produit : Product){
+  let images :Image[] = [] ;
+  this.selectedProduct.images = images
+this.produitService.ajouterOumodifierProduitService(produit).subscribe((Response)=>{
 
+  this.showMessage('success', 'Produit Modifié avec succés');
+  this.closeDialog2();
+  this.AfficherListProduct();
+
+},
+(error) => {
+  this.showMessage('error', 'Modification du produit échouée');
+}
+);
 }
 
 
@@ -127,27 +157,28 @@ ajouterOumodifierProduit(produit: Product){
 this.produitService.ajouterOumodifierProduitService(produit).subscribe(
   (response) => {
     this.showMessage('success', 'Produit enregistré avec succés');
+    this.closeDialog();
+   this.AfficherListProduct();
+
   },
   (error) => {
     this.showMessage('error', 'Ajout du produit échouée');
   }
 );
-this.closeDialog();
-this.AfficherListProduct();
-
 }
 
 supprimerProduit(abc:Product){
  this.produitService.supprimerProduitService(abc).subscribe(
   (response)=> {
     this.showMessage('success' , 'Produit supprimé avec succès');
+    this.closeDialog3();
+    this.AfficherListProduct() ; 
+
   },
   (error)=>{
     this.showMessage('error' , 'Suppression du produit échouée');
   }
  ) ; 
- this.closeDialog();
- this.AfficherListProduct() ; 
 
 
 

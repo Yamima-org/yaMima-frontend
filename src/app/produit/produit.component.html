@@ -2,17 +2,18 @@
 	Tableau des produits
 </h2>
  <p-button (click)="showBasicDialog()" icon="pi pi-plus" label="Ajouter" iconPos="right" ></p-button>
-	<p-dialog [(visible)]="display" [style]="{width: '50vw'}" [baseZIndex]="10000" #myDialog>
 
+	<p-dialog [(visible)]="display" [style]="{width: '50vw'}" [baseZIndex]="10000" #myDialog>
 		<ng-template pTemplate="header" >
 			Ajouter Produit
 		</ng-template>
+	
 		<div >
-			
-				
-			<h4>Nom DU produit</h4>
-		 <span class="p-float-label"  >
-			<input id="nameproduct" name ="nomProduit" type="text" [maxlength]="10" required pInputText [(ngModel)] = "produit.nameproduct" requiredMessage="nom de produit obligatoire" >
+		<h4>Nom DU produit</h4>
+			 <span class="p-float-label"  >
+			<input id="nameproduct" [formControl] ="nomProduit" type="text" [maxlength]="15"  pInputText [(ngModel)] = "produit.nameproduct"  >
+			<div class="error-message">Champ Obligatoire*</div>
+
 		</span>
 		</div>
 		<div>
@@ -25,39 +26,41 @@
 			<h4>Prix</h4>
 			<span class="p-float-label">
 
-			<input id="price" type="text" pInputText [(ngModel)] = "produit.price" required> 
-				 <label for="price">Prix</label>
+			<input id="price" type="text" [formControl] ="prix" pInputText [(ngModel)] = "produit.price" > 
+			<div class="error-message">Champ Obligatoire*</div>
+
 			</span>
 			</div>
 			<div>
 				<span class="p-float-label">
 					<h4>Taille DU Produit </h4>
-					<p-dropdown [options]="selectedSize" placeholder="-- Sélectionnez une option --" [(ngModel)]="selectedValue"  optionLabel="label"></p-dropdown>
+					<p-dropdown [options]="selectedSize" [formControl]="size" placeholder="-- Sélectionnez une option --" [(ngModel)]="selectedValue"  optionLabel="label"  [required]="true"></p-dropdown>
+					<div class="error-message">Champ Obligatoire*</div>
 
-					
-		         </span>
+				 </span>
 				</div>
 				<div>
 					<h4> Statut</h4>
 					<span class="p-float-label" >
-						<p-toggleButton onLabel="Disponible" offLabel="Non Disponible" 
-						onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right" [(ngModel)]="checked"></p-toggleButton>						
+						<p-toggleButton onLabel="Disponible" offLabel="Non Disponible" [formControl]="statut"
+    onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right" [(ngModel)]="selectedProduct.statut" required></p-toggleButton>	
+	<div class="error-message">Champ Obligatoire*</div>
+				
 					</span>
 					</div>
 					<div>
 						<h4> Description </h4>
 						<span class="p-float-label">
-							<input id="description" type="text" pInputText [(ngModel)] = "produit.description" required>
-							 <label for="description">Description</label>
+							<input id="description" [formControl]="description" type="text" pInputText [(ngModel)] = "produit.description"  >
 						</span>
 						</div>
+					
 		<ng-template pTemplate="footer">
-			<p-button icon="pi pi-check"  (click)="ajouterOumodifierProduit(produit)" label="Yes" styleClass="p-button-text"></p-button>
+			<p-button icon="pi pi-check"  (click)="ajouterOumodifierProduit(produit)" label="Yes" styleClass="p-button-text" [disabled]=" !prix.valid || !nomProduit.valid || !statut.valid || !size.valid"></p-button>
 			<p-button icon="pi pi-times" (click)="closeDialog()" label="No"></p-button>
 		</ng-template>
-</p-dialog>
+	</p-dialog>
 <p-toast></p-toast>
-
 <p-table #myTab [value]="listProduct">
 	<ng-template pTemplate="header">
 		<tr>
@@ -95,16 +98,16 @@
 			</td>
 			<td>
 				<p-button (click)="showBasicDialog3(produit)" icon="pi pi-user-edit" label="Modifier" iconPos="right" ></p-button>
-				<p-dialog [(visible)]="displayBasic3" [style]="{width: '50vw'}" [baseZIndex]="10000"  [modal]="true" [responsive]="true" >
+				<p-dialog [(visible)]="displayBasic3" [style]="{width: '50vw'}" [baseZIndex]="10000"  [modal]="true" [responsive]="true" #myDialog2>
 
 					<ng-template pTemplate="header" let-produit >
 						Modifier Produit
 					</ng-template>
 					<div class="form-group"   >
 						<span class="p-float-label"   >
-						   <input id="nameproduct" [maxlength]="8" type="text" pInputText [(ngModel)] = " selectedProduct.nameproduct" required >
-						   <!-- <label for="nameProduct">Nom Produit</label> -->
-					   </span>
+						   <input id="nameproduct" [maxlength]="15" type="text" [formControl]="nomProduit" pInputText [(ngModel)] = " selectedProduct.nameproduct" required >
+						   <div class="error-message">Champ Obligatoire*</div>
+						</span>
 					   </div>
 
 					   <div>
@@ -116,33 +119,38 @@
 					   <div>
 						<h4> Prix </h4>
 						   <span class="p-float-label">
-							   <input id="price" type="text" pInputText [(ngModel)] = "selectedProduct.price" >
-							   <!-- <label for="price">Prix</label> -->
-						   </span>
+							   <input id="price" type="text" [formControl]="prix" pInputText [(ngModel)] = "selectedProduct.price" >
+							   <div class="error-message">Champ Obligatoire*</div>
+							</span>
 						   </div>
                        <div>
 					    <span class="p-float-label">
 							<h4>Taille  DE Produit </h4>
-							<p-dropdown [options]="selectedSize"   [(ngModel)]="selectedProduct.sizeproduct" ></p-dropdown>
+							<p-dropdown [options]="selectedSize"   [(ngModel)]="selectedProduct.sizeproduct" [formControl]="size" [required]="true" ></p-dropdown>
+							<div class="error-message">Champ Obligatoire*</div>
+
 							 </span>
 								</div>
 								<div>
 									<h4> Statut</h4>
 									<span class="p-float-label" >
-										<p-toggleButton onLabel="Disponible" offLabel="Non Disponible" 
-										onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right"  [(ngModel)]="selectedProduct.statut" ></p-toggleButton>						
+										<p-toggleButton onLabel="Disponible" offLabel="Non Disponible" [formControl]="statut"
+										onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right"  [(ngModel)]="selectedProduct.statut" required></p-toggleButton>	
+										<div class="error-message">Champ Obligatoire*</div>
+					
 									</span>
 									</div>
 								   <div> 
 									<h4> Description </h4>
 									   <span class="p-float-label">
-										   <input id="description" type="text" pInputText [(ngModel)] = " selectedProduct.description" >
+										   <input id="description" type="text"  pInputText [(ngModel)] = " selectedProduct.description" >
+
 									   </span>
 									   </div>
 
 					<ng-template pTemplate="footer">
-						<p-button icon="pi pi-check" (click)="ajouterOumodifierProduit(selectedProduct)" label="Yes" styleClass="p-button-text"></p-button>
-						<p-button icon="pi pi-times" (click)="closeDialog()" label="No"></p-button>
+						<p-button icon="pi pi-check" (click)="modidfierProduit(selectedProduct)" label="Yes" styleClass="p-button-text" [disabled]="!prix.valid || !nomProduit.valid || !statut.valid || !size.valid "></p-button>
+						<p-button icon="pi pi-times" (click)="closeDialog2()" label="No"></p-button>
 					</ng-template>
 				</p-dialog>
 				<p-toast></p-toast>
@@ -151,14 +159,14 @@
 
 				 <td>
 					<p-button (click)="showBasicDialog2(produit)" icon="pi pi-trash" label="Supprimer" iconPos="right" ></p-button>
-					<p-dialog [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+					<p-dialog [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000" #myDialog3>
 
 						<ng-template pTemplate="header" >
 							Supprimer Produit
 						</ng-template>
 						<ng-template pTemplate="footer">
 							<p-button icon="pi pi-check" (click)="supprimerProduit(selectedProduct)" label="Yes" styleClass="p-button-text"></p-button>
-							<p-button icon="pi pi-times" (click)="closeDialog()"label="No"></p-button>
+							<p-button icon="pi pi-times" (click)="closeDialog3()" label="No"></p-button>
 						</ng-template>
 					</p-dialog>
 					<p-toast></p-toast>
