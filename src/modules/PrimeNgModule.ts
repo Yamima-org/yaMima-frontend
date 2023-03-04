@@ -7,6 +7,8 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
  import {DropdownModule} from 'primeng/dropdown';
  import { InputTextareaModule } from 'primeng/inputtextarea';
  import {ToggleButtonModule} from 'primeng/togglebutton';
+ import { MessageModule } from 'primeng/message';
+ import { MessagesModule } from 'primeng/messages';
 
 
 
@@ -20,6 +22,8 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
          DropdownModule,
          InputTextareaModule ,
          ToggleButtonModule,
+         MessageModule,
+         MessagesModule,
     ],
     exports: [
          TableModule,
@@ -30,6 +34,8 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
          DropdownModule,
          InputTextareaModule,
          ToggleButtonModule,
+         MessageModule,
+         MessagesModule,
     ],
     declarations: [],
     schemas: [

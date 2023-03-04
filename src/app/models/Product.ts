@@ -3,8 +3,8 @@ export class    Product {
 
 public idProduct : number ; 
 public nameproduct : string ; 
-public statut : string ;
-public sizeproduct : string ; 
+public statut : boolean ;
+public sizeproduct : string  ; 
 public description : string ; 
 public ingredients : string ; 
 public price : string ; 

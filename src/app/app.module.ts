@@ -10,6 +10,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { PrimeNgModule } from 'src/modules/PrimeNgModule';
 import { CreerproduitComponent } from './creerproduit/creerproduit.component';
 import { Dialog } from 'primeng/dialog';
+import { DialogService } from 'primeng/dynamicdialog';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { ProduitServiceService } from './produit-service.service';
 
 @NgModule({
   declarations: [
@@ -24,8 +28,10 @@ import { Dialog } from 'primeng/dialog';
     MaterialModule,
     HttpClientModule,
     PrimeNgModule,
+    ToastModule,
+
   ],
-  providers: [Dialog],
+  providers: [Dialog ,DialogService ,MessageService ,ProduitServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
