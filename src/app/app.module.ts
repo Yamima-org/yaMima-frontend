@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { ProduitComponent } from './produit/produit.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PrimeNgModule } from 'src/modules/PrimeNgModule';
-import { CreerproduitComponent } from './creerproduit/creerproduit.component';
 import { Dialog } from 'primeng/dialog';
 import { DialogService } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
@@ -19,7 +18,6 @@ import { ProduitServiceService } from './produit-service.service';
   declarations: [
     AppComponent,
     ProduitComponent,
-    CreerproduitComponent ,
   ],
   imports: [
     BrowserModule,

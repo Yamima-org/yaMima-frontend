@@ -16,7 +16,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./produit.component.css']
 })
 export class ProduitComponent implements OnInit {
- listProduct : Product[] = [];
+  listProduct : Product[] = [];
   public produit :Product = new Product();
   display : boolean ; 
   displayBasic : boolean = false ; 
@@ -29,7 +29,7 @@ export class ProduitComponent implements OnInit {
   ];
   selectedValue: any ;
   textValue : string ; 
-  checked: boolean = false ;
+  checked: boolean = true ;
   @ViewChild('myDialog') myDialog: Dialog;
   @ViewChild('myDialog') myDialog2: Dialog;
   @ViewChild('myDialog') myDialog3: Dialog;
@@ -39,6 +39,10 @@ export class ProduitComponent implements OnInit {
   description = new FormControl('', Validators.required);
   size = new FormControl('', Validators.required);
   statut = new FormControl('', Validators.required);
+  ingredients = new FormControl('', Validators.required);
+
+
+    // autres champs du formulaire...
 
   
   constructor(private httpClient : HttpClient , private produitService : ProduitServiceService ,private dialogService: DialogService,
@@ -56,6 +60,13 @@ export class ProduitComponent implements OnInit {
   
   showBasicDialog() {
     this.display = true;
+    this.prix.setValue('');
+    this.size.setValue('');
+    this.statut.setValue('');
+    this.description.setValue('');
+   this.ingredients.setValue('');
+   this.nomProduit.setValue('');
+
 }
 
 
@@ -160,11 +171,15 @@ this.produitService.ajouterOumodifierProduitService(produit).subscribe(
     this.closeDialog();
    this.AfficherListProduct();
 
+
   },
   (error) => {
     this.showMessage('error', 'Ajout du produit échouée');
   }
+
 );
+
+
 }
 
 supprimerProduit(abc:Product){

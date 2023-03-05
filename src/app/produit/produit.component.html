@@ -19,7 +19,7 @@
 		<div>
 			<span class="p-float-label" >
 			<h4>Ingredients</h4>
-			<textarea rows="5" cols="30" pInputTextarea [(ngModel)]="produit.ingredients" required></textarea>
+			<textarea rows="5" cols="30" [formControl]="ingredients" pInputTextarea [(ngModel)]="produit.ingredients" required></textarea>
 		</span>
 		</div>
 		<div>
@@ -56,7 +56,7 @@
 						</div>
 					
 		<ng-template pTemplate="footer">
-			<p-button icon="pi pi-check"  (click)="ajouterOumodifierProduit(produit)" label="Yes" styleClass="p-button-text" [disabled]=" !prix.valid || !nomProduit.valid || !statut.valid || !size.valid"></p-button>
+			<p-button icon="pi pi-check"  (click)="ajouterOumodifierProduit(produit)" label="Yes" styleClass="p-button-text" [disabled]=" !prix.valid || !nomProduit.valid || !statut.valid || !size.valid "></p-button>
 			<p-button icon="pi pi-times" (click)="closeDialog()" label="No"></p-button>
 		</ng-template>
 	</p-dialog>
