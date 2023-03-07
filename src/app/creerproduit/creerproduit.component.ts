@@ -4,19 +4,19 @@ import { Product } from '../models/Product';
 @Component({
   selector: 'app-creerproduit',
   templateUrl: './creerproduit.component.html',
-  styleUrls: ['./creerproduit.component.css']
+  styleUrls: ['./creerproduit.component.scss']
 })
 export class CreerproduitComponent implements OnInit {
- @Input() listProduct : Product ; 
+ @Input() listProduct : Product ;
  display: boolean = false;
  product : Product ;
   constructor() { }
 
   ngOnInit(): void {
-  
+
   }
 
 
- 
+
 
 }

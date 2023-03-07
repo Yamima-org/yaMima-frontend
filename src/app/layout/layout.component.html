@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="header">
+    <img src="/assets/img/logo.png" alt="" class="logo">
+    <form action="#" class="search">
+      <input type="text" class="search__input" placeholder="search hotels">
+      <button class="search__button">
+        <svg class="search__icon">
+          <!-- https://icomoon.io -->
+          <use xlink:href="/assets/img/sprite.svg#icon-magnifying-glass"></use>
+        </svg>
+      </button>
+    </form>
+
+    <nav class="user-nav">
+      <div class="user-nav__icon-box">
+        <svg class="user-nav__icon">
+          <use xlink:href="/assets/img/sprite.svg#icon-bookmark"></use>
+        </svg>
+        <span class="user-nav__notification">7</span>
+      </div>
+
+      <div class="user-nav__icon-box">
+        <svg class="user-nav__icon">
+          <use xlink:href="/assets/img/sprite.svg#icon-chat"></use>
+        </svg>
+        <span class="user-nav__notification">30</span>
+      </div>
+
+
+      <div class="user-nav__user">
+        <img src="/assets/img/user.jpg" alt="" class="user-nav__user-photo">
+        <span class="user-nav__user-name">username</span>
+      </div>
+    </nav>
+  </div>
+
+  <div class="content">
+    <div class="sidebar">
+
+      <ul class="side-nav">
+        <li class="side-nav__item side-nav__item--active">
+          <a href="#" class="side-nav__link">
+            <svg class="side-nav__icon">
+              <use xlink:href="/assets/img/sprite.svg#icon-home"></use>
+            </svg>
+            <span> Hotel</span>
+          </a>
+        </li>
+
+        <li class="side-nav__item">
+          <a href="#" class="side-nav__link">
+            <svg class="side-nav__icon">
+              <use xlink:href="/assets/img/sprite.svg#icon-aircraft-take-off"></use>
+            </svg>
+            <span> Flight</span>
+          </a>
+        </li>
+
+        <li class="side-nav__item">
+          <a href="#" class="side-nav__link">
+            <svg class="side-nav__icon">
+              <use xlink:href="/assets/img/sprite.svg#icon-key"></use>
+            </svg>
+            <span> Car rental</span>
+          </a>
+        </li>
+
+        <li class="side-nav__item">
+          <a href="#" class="side-nav__link">
+            <svg class="side-nav__icon">
+              <use xlink:href="/assets/img/sprite.svg#icon-map"></use>
+            </svg>
+            <span> Tourse</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="legal">
+        &copy; 2019, all rights reserved.
+      </div>
+
+    </div>
+    <div class="hotel-view">
+      <app-produit></app-produit>
+    </div>
+  </div>
+</div>

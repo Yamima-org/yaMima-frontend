@@ -13,13 +13,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-produit',
   templateUrl: './produit.component.html',
-  styleUrls: ['./produit.component.css']
+  styleUrls: ['./produit.component.scss']
 })
 export class ProduitComponent implements OnInit {
  listProduct : Product[] = [];
   public produit :Product = new Product();
-  display : boolean ; 
-  displayBasic : boolean = false ; 
+  display : boolean ;
+  displayBasic : boolean = false ;
   displayBasic3 :Boolean = false;
   selectedProduct: Product = new Product();
   selectedSize = [
@@ -28,7 +28,7 @@ export class ProduitComponent implements OnInit {
     { label: 'Large', value: 'L' }
   ];
   selectedValue: any ;
-  textValue : string ; 
+  textValue : string ;
   checked: boolean = false ;
   @ViewChild('myDialog') myDialog: Dialog;
   @ViewChild('myDialog') myDialog2: Dialog;
@@ -40,20 +40,20 @@ export class ProduitComponent implements OnInit {
   size = new FormControl('', Validators.required);
   statut = new FormControl('', Validators.required);
 
-  
+
   constructor(private httpClient : HttpClient , private produitService : ProduitServiceService ,private dialogService: DialogService,
     private messageService: MessageService
     ) {
-  
+
   }
 
   ngOnInit(): void {
     this.AfficherListProduct() ;
 
-   
+
   }
-  
-  
+
+
   showBasicDialog() {
     this.display = true;
 }
@@ -87,10 +87,10 @@ this.produitService.getProductService().subscribe(product => {
 
 statutProd(produit : Product){
   if (this.checked== true){
-    produit.statut = true ; 
+    produit.statut = true ;
   }
   else {
-    produit.statut = false ; 
+    produit.statut = false ;
   }
 }
 
@@ -172,13 +172,13 @@ supprimerProduit(abc:Product){
   (response)=> {
     this.showMessage('success' , 'Produit supprimé avec succès');
     this.closeDialog3();
-    this.AfficherListProduct() ; 
+    this.AfficherListProduct() ;
 
   },
   (error)=>{
     this.showMessage('error' , 'Suppression du produit échouée');
   }
- ) ; 
+ ) ;
 
 
 

@@ -14,12 +14,14 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ProduitServiceService } from './produit-service.service';
+import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProduitComponent,
-    CreerproduitComponent ,
+    CreerproduitComponent,
+    LayoutComponent ,
   ],
   imports: [
     BrowserModule,
