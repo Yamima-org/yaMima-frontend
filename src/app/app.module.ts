@@ -1,37 +1,36 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { MaterialModule } from 'src/modules/angularMateial.module';
-import { RoutingModule } from 'src/routing/routing-module';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { ProduitComponent } from './produit/produit.component';
-import { HttpClientModule } from '@angular/common/http';
-import { PrimeNgModule } from 'src/modules/PrimeNgModule';
-import { CreerproduitComponent } from './creerproduit/creerproduit.component';
+import { MessageService } from 'primeng/api';
 import { Dialog } from 'primeng/dialog';
 import { DialogService } from 'primeng/dynamicdialog';
-import { MessageService } from 'primeng/api';
+import { AppComponent } from './app.component';
+import { CreerproduitComponent } from './business/administration/product/creerproduit.component';
+import { ListProduitComponent } from './business/administration/product/list-produit.component';
+import { ProduitServiceService } from './business/administration/product/produit-service.service';
+import { HeaderComponent } from './business/shared/header/header.component';
+import { LayoutComponent } from './business/shared/layout/layout.component';
 import { ToastModule } from 'primeng/toast';
-import { ProduitServiceService } from './produit-service.service';
-import { LayoutComponent } from './layout/layout.component';
+import { RoutingModule } from './modules/routing-modules/routing-module';
+import { MaterialModule } from './modules/shared-modules/angularMateial.module';
+import { PrimeNgModule } from './modules/shared-modules/PrimeNgModule';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProduitComponent,
+    ListProduitComponent,
     CreerproduitComponent,
-    LayoutComponent ,
+    LayoutComponent,
+    HeaderComponent ,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    RoutingModule,
     RoutingModule,
     MaterialModule,
     HttpClientModule,
     PrimeNgModule,
     ToastModule,
-
   ],
   providers: [Dialog ,DialogService ,MessageService ,ProduitServiceService],
   bootstrap: [AppComponent]
