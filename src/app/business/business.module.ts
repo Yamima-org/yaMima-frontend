@@ -24,7 +24,6 @@ import { MaterialModule } from '../modules/shared-modules/angularMateial.module'
     PrimeNgModule,
     BrowserModule,
     RoutingModule,
-    RoutingModule,
     MaterialModule,
     HttpClientModule,
     ToastModule,

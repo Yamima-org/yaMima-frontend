@@ -10,11 +10,11 @@ import { ProduitServiceService } from './business/administration/product/produit
 import { HeaderComponent } from './business/shared/header/header.component';
 import { LayoutComponent } from './business/shared/layout/layout.component';
 import { ToastModule } from 'primeng/toast';
-import { RoutingModule } from './modules/routing-modules/routing-module';
 import { MaterialModule } from './modules/shared-modules/angularMateial.module';
 import { PrimeNgModule } from './modules/shared-modules/PrimeNgModule';
 import { ChoixProduitComponent } from './choix-produit/choix-produit.component';
 import { PanierComponent } from './panier/panier.component';
+import { RoutingModule } from './modules/routing-modules/routing-module';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,6 @@ import { PanierComponent } from './panier/panier.component';
   ],
   imports: [
     BrowserModule,
-    RoutingModule,
     RoutingModule,
     MaterialModule,
     HttpClientModule,

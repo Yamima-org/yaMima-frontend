@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Product } from '../models/Product';
-import { ProduitServiceService } from '../produit-service.service';
+import { ProduitServiceService } from '../business/administration/product/produit-service.service';
+import { Product } from '../business/models/product';
 
 @Component({
   selector: 'app-choix-produit',
@@ -14,7 +14,7 @@ export class ChoixProduitComponent implements OnInit {
   paymentMethod: string;
   paymentMethods = ['Option 1', 'Option 2'];
   selectedValue: any ;
-  display: boolean = false ; 
+  display: boolean = false ;
   selectedSize = [
     { label: 'Small', value: 'S' },
     { label: 'Medium', value: 'M' },
@@ -47,12 +47,12 @@ quantity: number = 1;
     this.AfficherListProduct();
   }
   AfficherListProduct(): void {
-    this.produitService.getProductService().subscribe(product => {
+    this.produitService.getProductService().subscribe((product:any) => {
       this.listProduct = product
 
       console.log(this.listProduct)
     })
-    
+
     }
     showBasicDialog(){
       this.display = true;
@@ -67,7 +67,7 @@ quantity: number = 1;
       if (this.quantity > 1) {
         this.quantity--;
       }    }
-  
+
       quantitePlus() {
       this.quantity++;    }
 
