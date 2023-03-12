@@ -19,7 +19,6 @@ import { PrimeNgModule } from './modules/shared-modules/PrimeNgModule';
   declarations: [
     AppComponent,
     ListProduitComponent,
-    CreerproduitComponent,
     LayoutComponent,
     HeaderComponent ,
   ],
