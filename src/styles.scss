@@ -1,14 +1,15 @@
 :root {
-  --color-primary: #eb2f64;
-  --color-primary-light: #FF3366;
-  --color-primary-dark: #BA265D;
+  --color-primary: #ff8714;
+  --color-primary-light: #ffa652;
+  --color-primary-dark: #ec6821d7;
   --color-grey-light-1: #faf9f9;
   --color-grey-light-2: #f4f2f2;
-  --color-grey-light-3: #f0eeee;
+  --color-grey-light-3: #f0eeee5c;
   --color-grey-light-4: #ccc;
   --color-grey-dark-1: #333;
   --color-grey-dark-2: #777;
   --color-grey-dark-3: #999;
+  --color-blue-light-1 : #58a3dad9;
   --shadow-dark: 0 2rem 6rem rgba(0,0,0,.3);
   --shadow-light: 0 2rem 5rem rgba(0,0,0,.06);
   --line: 1px solid var(--color-grey-light-2); }
@@ -33,14 +34,15 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   line-height: 1.6;
-  color: var(--color-grey-dark-1);
+  color: var(--color-grey-light-1);
   background-image: linear-gradient(to right bottom, var(--color-primary-light), var(--color-primary-dark));
   background-repeat: no-repeat;
   min-height: 100vh;
 }
 
 .container {
-  background: var(--color-grey-light-1);
+  background: var(--color-blue-light-1);
+  background-image: linear-gradient(to right bottom, #41b0d0, var(--color-primary-dark));
   min-height: 100vh;
 }
   @media only screen and (max-width: 75em) {
@@ -55,7 +57,9 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--color-grey-light-3); }
+  border-bottom: 1px solid var(--color-grey-light-3);
+  box-shadow: 0px 2px 6px 0px rgba(27,35,36,0.04),0px 8px 12px -2px rgba(27,35,36,0.06),0px 4px 6px 0px rgba(27,35,36,0.04);
+}
   @media only screen and (max-width: 31.25em) {
     .header {
       flex-wrap: wrap;
@@ -70,7 +74,6 @@ body {
       flex-direction: column; } }
 
 .sidebar {
-  background-color: black;
   display: flex;
   flex-direction: column;
   flex: 0 0 18%;
@@ -78,7 +81,8 @@ body {
 
 .hotel-view {
   flex: 1;
-  padding: 2rem;
+  display: flex;
+  // padding: 2rem;
 }
 
 .detail {
@@ -198,7 +202,6 @@ body {
   font-size: 1.4rem;
   list-style: none;
   margin-top: 3.5rem;
-  background: black;
   display: flex;
   flex-direction: column; }
   @media only screen and (max-width: 56.25em) {
@@ -229,7 +232,7 @@ body {
   .side-nav__item:active::before {
     background-color: var(--color-primary-light); }
   .side-nav__link {
-    color: white;
+    color: var(--color-grey-dark-1);
     text-decoration: none;
     text-transform: uppercase;
     padding: 1.5rem 3rem;
