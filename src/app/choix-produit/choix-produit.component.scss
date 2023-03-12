@@ -1,0 +1,57 @@
+.custom-card {
+    width: 50%;
+    height: 50%;
+  }
+  .star:before {
+    content: "\2605";
+    color: gold;
+  }
+  .minus-btn, .plus-btn {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background-color: violet;
+    font-size: 20px;
+    color: black;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .minus-btn:hover, .plus-btn:hover {
+    background-color: #ddd;
+  }
+  
+  .quantity-input {
+    width: 50px;
+    height: 30px;
+    padding: 0 10px;
+    border: none;
+    border-radius: 0;
+    background-color:violet;
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+    outline: none;
+  }
+  
+  .quantity-input:focus {
+    box-shadow: none;
+  }
+  .quantity-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .minus-btn,
+  .plus-btn,
+  .quantity-input {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 5px;
+  }
+  

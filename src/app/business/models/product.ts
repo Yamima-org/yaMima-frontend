@@ -7,8 +7,8 @@ public statut : boolean ;
 public sizeproduct : string  ;
 public description : string ;
 public ingredients : string ;
-public price : string ;
-public images :Image[] ;
+public price : number ; 
+public listImage:Image[] ;
 
 
 

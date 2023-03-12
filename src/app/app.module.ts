@@ -13,6 +13,8 @@ import { ToastModule } from 'primeng/toast';
 import { RoutingModule } from './modules/routing-modules/routing-module';
 import { MaterialModule } from './modules/shared-modules/angularMateial.module';
 import { PrimeNgModule } from './modules/shared-modules/PrimeNgModule';
+import { ChoixProduitComponent } from './choix-produit/choix-produit.component';
+import { PanierComponent } from './panier/panier.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { PrimeNgModule } from './modules/shared-modules/PrimeNgModule';
     ListProduitComponent,
     LayoutComponent,
     HeaderComponent ,
+    ChoixProduitComponent,
+    PanierComponent,
   ],
   imports: [
     BrowserModule,

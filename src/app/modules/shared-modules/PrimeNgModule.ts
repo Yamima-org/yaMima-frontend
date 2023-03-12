@@ -9,7 +9,12 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
  import {ToggleButtonModule} from 'primeng/togglebutton';
  import { MessageModule } from 'primeng/message';
  import { MessagesModule } from 'primeng/messages';
-
+ import {CarouselModule} from 'primeng/carousel';
+ import {CardModule} from 'primeng/card';
+ import { Component } from '@angular/core';
+ import { DialogService } from 'primeng/dynamicdialog';
+ import { DynamicDialogRef } from 'primeng/dynamicdialog';
+ import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 
 
 @NgModule({
@@ -24,6 +29,11 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
          ToggleButtonModule,
          MessageModule,
          MessagesModule,
+         CarouselModule,
+         CardModule,
+       
+      
+        
     ],
     exports: [
          TableModule,
@@ -36,6 +46,10 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
          ToggleButtonModule,
          MessageModule,
          MessagesModule,
+         CarouselModule,
+         CardModule,
+       
+      
     ],
     declarations: [],
     schemas: [
