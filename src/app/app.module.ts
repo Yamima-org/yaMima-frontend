@@ -5,7 +5,6 @@ import { MessageService } from 'primeng/api';
 import { Dialog } from 'primeng/dialog';
 import { DialogService } from 'primeng/dynamicdialog';
 import { AppComponent } from './app.component';
-import { CreerproduitComponent } from './business/administration/product/creerproduit.component';
 import { ListProduitComponent } from './business/administration/product/list-produit.component';
 import { ProduitServiceService } from './business/administration/product/produit-service.service';
 import { HeaderComponent } from './business/shared/header/header.component';

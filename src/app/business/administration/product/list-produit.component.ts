@@ -31,7 +31,7 @@ export class ListProduitComponent implements OnInit {
 
   selectedValue: any;
   textValue: string;
-  checked: boolean = false;
+  checked: boolean = true ;
 
   @ViewChild('myDialog') myDialog: Dialog;
   @ViewChild('myDialog') myDialog2: Dialog;
@@ -42,6 +42,7 @@ export class ListProduitComponent implements OnInit {
   description = new FormControl('', Validators.required);
   size = new FormControl('', Validators.required);
   statut = new FormControl('', Validators.required);
+  ingredients = new FormControl('', Validators.required);
 
 
   constructor(private httpClient: HttpClient, private produitService: ProduitServiceService, private dialogService: DialogService,
@@ -55,7 +56,14 @@ export class ListProduitComponent implements OnInit {
   }
 
   showBasicDialog() {
-    this.display = true;
+      this.display = true;
+      this.prix.setValue('');
+      this.size.setValue('');
+      this.statut.setValue('');
+      this.description.setValue('');
+     this.ingredients.setValue('');
+     this.nomProduit.setValue('');
+
   }
 
   showBasicDialog2(produit: Product) {
