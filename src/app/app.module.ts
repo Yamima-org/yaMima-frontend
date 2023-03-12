@@ -13,11 +13,15 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ProduitServiceService } from './produit-service.service';
+import { ChoixProduitComponent } from './choix-produit/choix-produit.component';
+import { PanierComponent } from './panier/panier.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProduitComponent,
+    ChoixProduitComponent,
+    PanierComponent,
   ],
   imports: [
     BrowserModule,
