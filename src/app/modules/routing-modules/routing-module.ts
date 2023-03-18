@@ -10,9 +10,9 @@ import { PanierComponent } from "src/app/panier/panier.component";
 
 
 const appRoutes : Routes = [
-// { path: '', redirectTo: '', pathMatch: 'full' },
+ { path: '', redirectTo:'home' , pathMatch: 'full'},
+ {path: 'home' , component: LayoutComponent},
  {path: 'produit' , component: ListProduitComponent},
- {path: 'layout' , component: LayoutComponent},
  {path: 'choixProduit' , component: ChoixProduitComponent },
  {path: 'panier' , component: PanierComponent },
 ]
