@@ -1,43 +1,55 @@
     <h2>
       Confirmation de commande</h2>
+    <p-messages></p-messages>
+
     <div class="row">
       <div class="col-md-6">
-        <h2>Détails de la commande</h2>
+        <h2>Livraison</h2>
         <div class="p-field">
-          <label for="order-number">Numéro de commande</label>
-          <input type="text" id="order-number" name="order-number" value="12345" disabled pInputText>
+
+          <label for="order-number">Livraison</label>
+          <input type="text" id="order-number" name="order-number" value="Livraison en 30-35 Min" disabled pInputText>
         </div>
         <div class="p-field">
-          <label for="order-date">Date de commande</label>
-          <input type="text" id="order-date" name="order-date" value="2023-03-07" disabled pInputText>
+          <label for="order-date">Adresse de Livraison</label>
+          <input type="text" id="order-date" name="order-date" [(ngModel)]="panier.lieulivraison"  pInputText>
         </div>
         <div class="p-field">
           <label for="total-amount">Montant total</label>
-          <input type="text" id="total-amount" name="total-amount" value="$123.45" disabled pInputText>
+
+           <input type="text" id="total-amount" name="total-amount" [(ngModel)]="panier.montanttotal" disabled pInputText>
+        </div>
+        <div class="p-field">
+          <label for="total-amount">Taille de Produit</label>
+          <input type="text" id="total-amount" name="total-amount" [(ngModel)]="panier.tailleproduit" disabled pInputText>
         </div>
       </div>
       <div class="col-md-6">
         <h2>Coordonnées du client</h2>
         <div class="p-field">
           <label for="name">Nom complet</label>
-          <input type="text" id="name" name="name" value="John Doe" disabled pInputText>
+          <input type="text" id="name" name="name"  [(ngModel)]="panier.nomcomplet"  pInputText>
         </div>
         <div class="p-field">
           <label for="email">Adresse e-mail</label>
-          <input type="text" id="email" name="email" value="johndoe@example.com" disabled pInputText>
+          <input type="text" id="email" name="email" [(ngModel)]="panier.mail" pInputText>
         </div>
         <div class="p-field">
           <label for="phone">Numéro de téléphone</label>
-          <input type="text" id="phone" name="phone" value="(555) 555-5555" pInputText>
+          <input type="text" id="phone" name="phone" maxlength="8" [(ngModel)]="panier.numtel" pInputText>
         </div>
-        <div class="p-field">
-          <label for="payment-method">Méthode de paiement</label>
-          <p-dropdown id="payment-method" name="payment-method" [options]="paymentMethods"></p-dropdown>
-        </div>
-        <div class="p-field">
-          <label for="delivery-address">Adresse de livraison</label>
-          <input type="text" id="delivery-address" name="delivery-address" placeholder="Entrez votre adresse de livraison" pInputText>
-        </div>
-        <button type="submit" class="p-button p-button-raised p-button-rounded" (click)="onSubmit()">Passer la commande</button>
+        <span class="p-float-label">
+          <h4>Taille DU Produit </h4>
+          <p-dropdown [options]="paymentMethods" placeholder="-- Sélectionnez une option --"
+            [(ngModel)]="selectedValuepayement" optionLabel="label" [required]="true"></p-dropdown>
+          <div class="error-message">Champ Obligatoire*</div>
+    
+        </span>
+        
+        <button type="submit" class="p-button p-button-raised p-button-rounded" (click)="sauvegarderCommande(panier)">Passer la commande</button>
+
+     
       </div>
     </div>
+
+  <app-choix-produit #choix></app-choix-produit>

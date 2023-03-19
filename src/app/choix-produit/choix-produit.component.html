@@ -2,15 +2,16 @@
 
 <h2>Liste des produits</h2>
 <div class="p-grid p-nogutter">
-  <p-card class="custom-card">
+  <p-card >
     <div class="p-col-4" *ngFor="let produit of listProduct">
-      <div *ngFor="let image of produit.listImage">
+      <div *ngFor="let image of produit.images">
         <img [src]="image.url" class="product-image">
       </div>
       <h3>Produit : {{produit.nameproduct}}</h3>
       <p class="product-ingredient">Ingredients : {{produit.ingredients}}</p>
-      <p class="product-price"> Prix : {{produit.price}} D    Prix de Livraison : 2D</p>
+      <!-- <p class="product-price"> Prix : {{produit.price}} D    Prix de Livraison : 2D</p> -->
       <p class="product-statut"> Disponibilité de Produit : {{ produit.statut ? 'Disponible' : 'Non Disponible' }} </p>
+    
       <br>
       <p-button (click)="showBasicDialog()" icon="pi pi-plus" label="Commander" iconPos="right" ></p-button>
     </div>
@@ -25,7 +26,7 @@
 
 
     <div class="dialog"  *ngFor="let produit of listProduct">
-        <div class="product-details" *ngFor="let image of produit.listImage">
+        <div class="product-details" *ngFor="let image of produit.images">
           <img [src]="image.url" alt="Product 1">
           <h3>{{produit.nameproduct}}</h3>
           <p>{{produit.description}}<span class="rating">
@@ -37,10 +38,18 @@
           </span></p>
          
           <p class="delivery-time">Temps de Livraison : 30-45 Minutes </p>
-          <p class="price">Prix : {{produit.price * quantity}}D</p>
-          <p class="price">Taille de Produit : {{ produit.sizeproduct == 'L' ? 'Large' : produit.sizeproduct == 'S' ? 'Small' : 'Medium' }}
-        </p>
-
+          <span class="p-float-label">
+            <h4>Taille DU Produit </h4>
+            <p-dropdown [options]="selectedSize"  placeholder="-- Sélectionnez une option --"
+              [(ngModel)]="selectedValue" optionLabel="label" [required]="true"></p-dropdown>
+            <div class="error-message">Champ Obligatoire*</div>
+      
+          </span>
+          <p class="price">Prix : {{montantTotal}}D</p>
+          <!-- <p class="price">Taille de Produit : {{ produit.sizeproduct == 'L' ? 'Large' : produit.sizeproduct == 'S' ? 'Small' : 'Medium' }}
+        </p> -->
+      
+        
         <button class="minus-btn" (click)="quantitemoin()">-</button>
         <input type="text" class="quantity-input" [(ngModel)]="quantity" />
         <button class="plus-btn" (click)="quantitePlus()">+</button>

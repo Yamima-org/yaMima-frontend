@@ -54,4 +54,17 @@
     vertical-align: middle;
     margin: 0 5px;
   }
-  
+// my-component.scss
+
+.my-card {
+  background-color: white; // Définit la couleur de fond de la carte sur blanc
+  border-radius: 5px; // Définit le rayon des bords de la carte sur 5px
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Ajoute une ombre à la carte
+
+  .ui-button {
+    background-color: blue; // Définit la couleur de fond des boutons sur bleu
+    color: white; // Définit la couleur du texte des boutons sur blanc
+    border: none; // Supprime les bordures des boutons
+    margin-right: 5px; // Ajoute une marge à droite pour séparer les boutons
+  }
+}

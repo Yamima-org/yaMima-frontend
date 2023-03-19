@@ -134,7 +134,7 @@ export class ListProduitComponent implements OnInit {
 
   modidfierProduit(produit: Product) {
     let images: Image[] = [];
-    this.selectedProduct.listImage = images
+    this.selectedProduct.images = images
     this.produitService.ajouterOumodifierProduitService(produit).subscribe((Response) => {
       this.showMessage('success', 'Produit Modifié avec succés');
       this.closeDialog2();
@@ -148,7 +148,7 @@ export class ListProduitComponent implements OnInit {
 
   ajouterOumodifierProduit(produit: Product) {
     let images: Image[] = [];
-    this.produit.listImage = images
+    this.produit.images = images
     this.statutProd(produit);
     this.SizeProd(produit);
     this.produitService.ajouterOumodifierProduitService(produit).subscribe(

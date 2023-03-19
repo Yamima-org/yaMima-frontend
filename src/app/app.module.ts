@@ -13,6 +13,7 @@ import { PrimeNgModule } from './modules/shared-modules/PrimeNgModule';
 import { ChoixProduitComponent } from './choix-produit/choix-produit.component';
 import { RoutingModule } from './modules/routing-modules/routing-module';
 import { ListProduitComponent } from './business/administration/product/list-produit.component';
+import { MapComponentComponent } from './map-component/map-component.component';
 import { HeaderComponent } from './business/shared/header/header.component';
 import { SharedModule } from './modules/shared-modules/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,6 +26,7 @@ import { SideBarComponent } from './business/shared/side-bar/side-bar.component'
     ChoixProduitComponent,
     ListProduitComponent,
     HeaderComponent,
+    MapComponentComponent,
     SideBarComponent
   ],
   imports: [

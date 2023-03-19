@@ -8,7 +8,7 @@ public sizeproduct : string  ;
 public description : string ;
 public ingredients : string ;
 public price : number ; 
-public listImage:Image[] ;
+public images:Image[] ;
 
 
 

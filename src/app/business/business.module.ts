@@ -6,6 +6,9 @@ import { BusinessRoutingModule } from './business-routing.module';
 import { CommandeModule } from './commandes/commande.module';
 import { SharedModule } from '../modules/shared-modules/shared.module';
 import { PanierComponent } from './commandes/panier/panier.component';
+import { DialogService } from 'primeng/dynamicdialog';
+import { MessageService } from 'primeng/api';
+// import { AgmCoreModule } from '@agm/core';
 
 
 
@@ -19,7 +22,8 @@ import { PanierComponent } from './commandes/panier/panier.component';
     ToastModule,
     CommandeModule,
     SharedModule
+    // })
   ],
-  providers: [ProduitServiceService]
+  providers: [ProduitServiceService ,DialogService ,MessageService]
 })
 export class BusinessModule { }
