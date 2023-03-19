@@ -1,8 +1,26 @@
+.page-sc , .page-sc-1{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: calc(100vh - 7rem);
+}
+.page-sc-1 {
+  color:var(--color-grey-light-2)
+}
 .sec-img {
   width:100%;
-  height: 100%;
+  min-height: calc(100vh - 7rem);
   display: flex;
   position: relative;
+  flex: 0 0 50%;
+}
+
+.sec-img-3 {
+  width:100%;
+  min-height: calc(100vh - 7rem);
+  display: flex;
+  position: relative;
+  flex: 0 0 33.33%;
 }
 
 .pl-1-side {
@@ -19,8 +37,9 @@
   // border-radius: 2rem solid white;
   // color: var(--color-primary-dark);
   padding: 5rem;
-  background-color: #ffffff36;
   display: table;
+  // background-color: #0000006e;
+    background-color: #ffffff36;
 }
 .tx-ad-md{
   // color: var(--color-primary-dark);
@@ -41,8 +60,9 @@
 }
 .text-half {
   width: 100%;
-  height: 100%;
+  min-height: calc(100vh - 7rem);
   display: flex;
+  flex: 0 0 50%;
 }
 .btn-ord{
   background-color: var(--color-primary);
@@ -53,13 +73,14 @@
   text-align: center;
   line-height: 5.5rem;
   font-size: large;
+  font-weight: 600;
   font-family: 'DancingScript-Regular';
   margin: 2rem auto;
   cursor: pointer;
 }
 
 
-.y-slogan- {
+.y-slogan- , .y-slogan-dark {
   position: absolute;
   left: 0;
   right: 0;
@@ -70,6 +91,7 @@
   height: 40rem;
   font-size: 36px;
   padding: 5rem;
+  // background-color: #0000006e;
   background-color: #ffffff36;
   text-align: center;
   font-family: "DancingScript-Regular";
@@ -79,8 +101,16 @@
     vertical-align: middle;
    }
 }
-
+.y-slogan-dark {
+  background-color: #0000006e;
+}
 .y-slog-yamima{
   font-weight: 600;
   white-space: nowrap;
+}
+
+.home_pic {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }

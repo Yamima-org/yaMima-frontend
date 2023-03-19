@@ -1,5 +1,6 @@
-<div class="header">
-  <img src="/assets/img/logo.png" alt="" class="logo">
+<div
+  [ngClass]="isInScroll ? 'header scroll' : 'header'">
+  <img src="/assets/img/logo.png" alt="" class="logo" [routerLink]="'/home'">
   <form action="#" class="search">
     <input type="text" class="search__input" placeholder="search hotels">
     <button class="search__button">
@@ -14,14 +15,26 @@
       <svg class="user-nav__icon">
         <use xlink:href="/assets/img/sprite.svg#icon-bookmark"></use>
       </svg>
-      <span class="user-nav__notification">7</span>
+      <span class="user-nav__notification">3</span>
     </div>
 
     <div class="user-nav__icon-box">
       <svg class="user-nav__icon">
         <use xlink:href="/assets/img/sprite.svg#icon-chat"></use>
       </svg>
-      <span class="user-nav__notification">30</span>
+      <span class="user-nav__notification">1</span>
+    </div>
+    <div class="user-nav__icon-box">
+      <svg class="user-nav__icon">
+        <use xlink:href="/assets/img/SVG/box.svg#box-icon"></use>
+      </svg>
+      <span class="user-nav__notification">2</span>
+    </div>
+    <div class="user-nav__icon-box">
+      <svg class="user-nav__icon">
+        <use xlink:href="/assets/img/SVG/panier.svg#panier-icon"></use>
+      </svg>
+      <span class="user-nav__notification">1</span>
     </div>
     <div class="user-nav__user">
       <img src="/assets/img/user.jpg" alt="" class="user-nav__user-photo">

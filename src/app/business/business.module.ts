@@ -1,32 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ListProduitComponent } from './administration/product/list-produit.component';
 import { ProduitServiceService } from './administration/product/produit-service.service';
-import { LayoutComponent } from './shared/layout/layout.component';
-import { HeaderComponent } from './shared/header/header.component';
-import { PrimeNgModule } from '../modules/shared-modules/PrimeNgModule';
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserModule } from '@angular/platform-browser';
 import { ToastModule } from 'primeng/toast';
-import { RoutingModule } from '../modules/routing-modules/routing-module';
-import { MaterialModule } from '../modules/shared-modules/angularMateial.module';
+import { BusinessRoutingModule } from './business-routing.module';
+import { CommandeModule } from './commandes/commande.module';
+import { SharedModule } from '../modules/shared-modules/shared.module';
+import { PanierComponent } from './commandes/panier/panier.component';
 
 
 
 @NgModule({
   declarations: [
-    ListProduitComponent,
-    LayoutComponent,
-    HeaderComponent
+    PanierComponent
   ],
   imports: [
     CommonModule,
-    PrimeNgModule,
-    BrowserModule,
-    RoutingModule,
-    MaterialModule,
-    HttpClientModule,
+    BusinessRoutingModule,
     ToastModule,
+    CommandeModule,
+    SharedModule
   ],
   providers: [ProduitServiceService]
 })
