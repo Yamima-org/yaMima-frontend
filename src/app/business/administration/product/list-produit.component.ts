@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Dialog } from 'primeng/dialog';
 import { MessageService } from 'primeng/api';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import { Product } from '../../models/product';
 import { ProduitServiceService } from './produit-service.service';
 import { Image } from '../../models/image';
@@ -37,12 +37,12 @@ export class ListProduitComponent implements OnInit {
   @ViewChild('myDialog') myDialog2: Dialog;
   @ViewChild('myDialog') myDialog3: Dialog;
 
-  nomProduit = new FormControl('', Validators.required);
-  prix = new FormControl('', Validators.required);
-  description = new FormControl('', Validators.required);
-  size = new FormControl('', Validators.required);
-  statut = new FormControl('', Validators.required);
-  ingredients = new FormControl('', Validators.required);
+  nomProduit = new UntypedFormControl('', Validators.required);
+  prix = new UntypedFormControl('', Validators.required);
+  description = new UntypedFormControl('', Validators.required);
+  size = new UntypedFormControl('', Validators.required);
+  statut = new UntypedFormControl('', Validators.required);
+  ingredients = new UntypedFormControl('', Validators.required);
 
 
   constructor(private httpClient: HttpClient, private produitService: ProduitServiceService, private dialogService: DialogService,
