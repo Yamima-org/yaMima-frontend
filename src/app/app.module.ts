@@ -19,6 +19,7 @@ import { SideBarComponent } from './business/shared/side-bar/side-bar.component'
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './business/shared/footer/footer.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { FooterComponent } from './business/shared/footer/footer.component';
   imports: [
     BrowserModule,FormsModule,
     BrowserAnimationsModule,
+    FontAwesomeModule,
     RoutingModule,
     HttpClientModule,
     ToastModule,

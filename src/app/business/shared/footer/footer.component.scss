@@ -5,10 +5,13 @@
 .socials {
   display: flex;
   height: 100%;
-  i {
+  font-size: 3rem;
+  line-height: 3rem;
+  fa-icon {
     height: 3rem;
     width: 3rem;
     display: block;
+    margin : 0 1rem;
   }
 }
 
