@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { ProduitServiceService } from '../business/administration/product/produit-service.service';
-import { Panier } from '../business/models/panier';
 import { Product } from '../business/models/product';
 import { PanierServiceService } from '../panier-service.service';
 

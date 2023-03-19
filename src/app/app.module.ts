@@ -16,6 +16,8 @@ import { HeaderComponent } from './business/shared/header/header.component';
 import { SharedModule } from './modules/shared-modules/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SideBarComponent } from './business/shared/side-bar/side-bar.component';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { SideBarComponent } from './business/shared/side-bar/side-bar.component'
     HttpClientModule,
     ToastModule,
     SharedModule,
+    RouterModule
   ],
   providers: [Dialog ,DialogService ,MessageService ,ProduitServiceService],
   bootstrap: [AppComponent]

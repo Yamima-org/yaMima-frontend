@@ -11,10 +11,6 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
  import { MessagesModule } from 'primeng/messages';
  import {CarouselModule} from 'primeng/carousel';
  import {CardModule} from 'primeng/card';
- import { Component } from '@angular/core';
- import { DialogService } from 'primeng/dynamicdialog';
- import { DynamicDialogRef } from 'primeng/dynamicdialog';
- import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 
 
 @NgModule({

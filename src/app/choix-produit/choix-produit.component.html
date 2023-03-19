@@ -5,7 +5,7 @@
   <p-card >
     <div class="p-col-4" *ngFor="let produit of listProduct">
       <div *ngFor="let image of produit.images">
-        <img [src]="image.url" class="product-image">
+        <img [src]="image.url" class="product-image" alt="">
       </div>
       <h3>Produit : {{produit.nameproduct}}</h3>
       <p class="product-ingredient">Ingredients : {{produit.ingredients}}</p>
