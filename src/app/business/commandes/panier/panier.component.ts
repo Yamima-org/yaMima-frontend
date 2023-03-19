@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Dialog } from 'primeng/dialog';
-import { Panier } from '../business/models/panier';
-import { Product } from '../business/models/product';
-import { ChoixProduitComponent } from '../choix-produit/choix-produit.component';
-import { PanierServiceService } from '../panier-service.service';
+import { ChoixProduitComponent } from 'src/app/choix-produit/choix-produit.component';
+import { PanierServiceService } from 'src/app/panier-service.service';
+import { Panier } from '../../models/panier';
+
 
 @Component({
   selector: 'app-panier',

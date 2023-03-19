@@ -55,7 +55,7 @@ test : any ;
     closeDialog(){}
     ajouterAuPanier(){
     this.sizeProduit()
-      this.router.navigate(['/panier']);
+      this.router.navigate(['/service/commande/panier']);
 
     }
     quantitemoin() : any {
