@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,6 +8,16 @@ import { Router } from '@angular/router';
 })
 export class LayoutComponent implements OnInit {
 
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll($event: any) {
+    let element: any = $event.target;
+    if (element.scrollingElement.scrollTop > window.innerHeight/2) {
+      this.isInScroll = true;
+    } else {
+      this.isInScroll = false;
+    }
+  }
+  isInScroll: boolean;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
