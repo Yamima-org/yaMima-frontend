@@ -1,0 +1,31 @@
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+}
+.socials {
+  display: flex;
+  height: 100%;
+  i {
+    height: 3rem;
+    width: 3rem;
+    display: block;
+  }
+}
+
+.footer-nav {
+  display: inline-block;
+  height: 100%;
+  line-height: 3rem;
+  font-family: "montserrat";
+  font-weight: 400;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  ul {
+    display: block;
+  }
+  li {
+    display: inline-block;
+    margin: 0 2rem;
+  }
+}

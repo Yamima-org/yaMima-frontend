@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SideBarComponent } from './business/shared/side-bar/side-bar.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { FooterComponent } from './business/shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { RouterModule } from '@angular/router';
     ChoixProduitComponent,
     ListProduitComponent,
     HeaderComponent,
+    FooterComponent,
     MapComponentComponent,
     SideBarComponent
   ],
