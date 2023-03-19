@@ -14,7 +14,6 @@ import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
-    PanierComponent
   ],
   imports: [
     CommonModule,

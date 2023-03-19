@@ -8,8 +8,6 @@ import { AppComponent } from './app.component';
 import { ProduitServiceService } from './business/administration/product/produit-service.service';
 import { LayoutComponent } from './business/shared/layout/layout.component';
 import { ToastModule } from 'primeng/toast';
-import { MaterialModule } from './modules/shared-modules/angularMateial.module';
-import { PrimeNgModule } from './modules/shared-modules/PrimeNgModule';
 import { ChoixProduitComponent } from './choix-produit/choix-produit.component';
 import { RoutingModule } from './modules/routing-modules/routing-module';
 import { ListProduitComponent } from './business/administration/product/list-produit.component';
@@ -30,12 +28,12 @@ import { SideBarComponent } from './business/shared/side-bar/side-bar.component'
     SideBarComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,FormsModule,
     BrowserAnimationsModule,
     RoutingModule,
     HttpClientModule,
     ToastModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [Dialog ,DialogService ,MessageService ,ProduitServiceService],
   bootstrap: [AppComponent]
