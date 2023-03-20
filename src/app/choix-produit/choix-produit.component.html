@@ -1,70 +1,59 @@
 
-
-<h2>Liste des produits</h2>
-<div class="p-grid p-nogutter">
-  <p-card >
-    <div class="p-col-4" *ngFor="let produit of listProduct">
-      <div *ngFor="let image of produit.images">
-        <img [src]="image.url" class="product-image" alt="">
-      </div>
-      <h3>Produit : {{produit.nameproduct}}</h3>
-      <p class="product-ingredient">Ingredients : {{produit.ingredients}}</p>
-      <!-- <p class="product-price"> Prix : {{produit.price}} D    Prix de Livraison : 2D</p> -->
-      <p class="product-statut"> Disponibilité de Produit : {{ produit.statut ? 'Disponible' : 'Non Disponible' }} </p>
-    
-      <br>
-      <p-button (click)="showBasicDialog()" icon="pi pi-plus" label="Commander" iconPos="right" ></p-button>
-    </div>
-  </p-card>
-</div>
-
-
-<p-dialog [(visible)]="display" [style]="{width: '50vw'}" [baseZIndex]="10000" #myDialog>
-    <ng-template pTemplate="header" >
-        Ajouter Produit
-    </ng-template>
-
-
-    <div class="dialog"  *ngFor="let produit of listProduct">
-        <div class="product-details" *ngFor="let image of produit.images">
-          <img [src]="image.url" alt="Product 1">
-          <h3>{{produit.nameproduct}}</h3>
-          <p>{{produit.description}}<span class="rating">
-            <span class="star"></span>
-            <span class="star"></span>
-            <span class="star"></span>
-            <span class="star"></span>
-            <span class="star"></span>
-          </span></p>
-         
-          <p class="delivery-time">Temps de Livraison : 30-45 Minutes </p>
-          <span class="p-float-label">
-            <h4>Taille DU Produit </h4>
-            <p-dropdown [options]="selectedSize"  placeholder="-- Sélectionnez une option --"
-              [(ngModel)]="selectedValue" optionLabel="label" [required]="true"></p-dropdown>
-            <div class="error-message">Champ Obligatoire*</div>
-      
-          </span>
-          <p class="price">Prix : {{montantTotal}}D</p>
-          <!-- <p class="price">Taille de Produit : {{ produit.sizeproduct == 'L' ? 'Large' : produit.sizeproduct == 'S' ? 'Small' : 'Medium' }}
-        </p> -->
-      
-        
-        <button class="minus-btn" (click)="quantitemoin()">-</button>
-        <input type="text" class="quantity-input" [(ngModel)]="quantity" />
-        <button class="plus-btn" (click)="quantitePlus()">+</button>
-        
-        </div>
-
-
-      </div>
-                
-    <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check"  (click)="ajouterAuPanier()" label="Ajouter au Pannier" styleClass="p-button-text" ></p-button>
-        <p-button icon="pi pi-times" (click)="closeDialog()" label="Annuler"></p-button>
-    </ng-template>
-</p-dialog>
+<div class="card">
+  <p-dataView #dv [value]="listProduct" [paginator]="false" [rows]="9" filterBy="nameproduct"
+      [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+      <ng-template pTemplate="header">
+          <div class="flex flex-column md:flex-row md:justify-content-between">
+              <p-dropdown [options]="sortOptions" [(ngModel)]="sortField" placeholder="Sort By Price" (onChange)="onSortChange($event)" styleClass="mb-2 md:mb-0"></p-dropdown>
+              <span class="p-input-icon-left mb-2 md:mb-0">
+                  <i class="pi pi-search"></i>
+                  <input type="search" pInputText placeholder="Search by Name" (input)="applyFilter($event,'contains')">
+              </span>
+              <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+          </div>
+      </ng-template>
+      <ng-template let-product pTemplate="listItem">
+          <div class="p-col-12">
+              <div class="product-list-item">
+                  <div class="product-list-detail">
+                    <img [src]="product.mainImage.url" alt="{{product.nameproduct}}">
+                      <div class="product-name">{{product.nameproduct}}</div>
+                      <div class="product-description">{{product.description}}</div>
+                      <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
+                      <i class="pi pi-tag product-category-icon"></i><span class="product-category">{{product.category}}</span>
+                  </div>
+                  <div class="product-list-action">
+                      <span class="product-price">${{product.price}}</span>
+                      <p-button icon="pi pi-shopping-cart" label="Add to Cart" [disabled]="!product.statut"></p-button>
+                      <span [ngClass]="product.statut ? 'product-badge status-instock' : 'product-badge status-outofstock' ">{{product.statut ? 'DISPONIBLE' : 'INDISPONIBLE'}}</span>
+                  </div>
+              </div>
+          </div>
+      </ng-template>
+      <ng-template let-product pTemplate="gridItem">
+          <div class="col-12 md:col-4">
+              <div class="product-grid-item card">
+                  <div class="product-grid-item-top">
+                      <div>
+                          <i class="pi pi-tag product-category-icon"></i>
+                          <span class="product-category">{{product.category}}</span>
+                      </div>
+                      <span [class]="product.statut ? 'product-badge status-instock' : 'product-badge status-outofstock'">{{product.statut ? 'DISPONIBLE' : 'INDISPONIBLE'}}</span>
+                  </div>
+                  <div class="product-grid-item-content">
+                    <img [src]="product.mainImage.url" alt="{{product.nameproduct}}">
+                      <div class="product-name">{{product.nameproduct}}</div>
+                      <div class="product-description">{{product.description}}</div>
+                      <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
+                  </div>
+                  <div class="product-grid-item-bottom">
+                      <span class="product-price">${{product.price}}</span>
+                      <p-button icon="pi pi-shopping-cart" [disabled]="!product.statut"></p-button>
+                  </div>
+              </div>
+          </div>
+      </ng-template>
+  </p-dataView>
 
 
-
-  
+  <!-- dataview end -->

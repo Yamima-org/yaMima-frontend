@@ -11,13 +11,16 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
  import { MessagesModule } from 'primeng/messages';
  import {CarouselModule} from 'primeng/carousel';
  import {CardModule} from 'primeng/card';
+import { RippleModule } from "primeng/ripple";
+import {RatingModule} from 'primeng/rating';
+import {DataViewModule} from 'primeng/dataview';
 
 
 @NgModule({
     imports: [
          TableModule,
-         ButtonModule,  
-         DialogModule, 
+         ButtonModule,
+         DialogModule,
          InputTextModule,
          DynamicDialogModule,
          DropdownModule,
@@ -27,9 +30,10 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
          MessagesModule,
          CarouselModule,
          CardModule,
-       
-      
-        
+         RippleModule,
+         RatingModule,
+         DataViewModule,
+
     ],
     exports: [
          TableModule,
@@ -44,8 +48,10 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
          MessagesModule,
          CarouselModule,
          CardModule,
-       
-      
+         RippleModule,
+         RatingModule,
+         DataViewModule
+
     ],
     declarations: [],
     schemas: [

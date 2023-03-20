@@ -7,8 +7,11 @@ public statut : boolean ;
 public sizeproduct : string  ;
 public description : string ;
 public ingredients : string ;
-public price : number ; 
+public price : number ;
 public images:Image[] ;
+public mainImage:Image;
+public rating:number;
+public category:number
 
 
 

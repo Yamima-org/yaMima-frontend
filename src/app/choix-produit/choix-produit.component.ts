@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { SelectItem } from 'primeng/api';
+import { DataView } from 'primeng/dataview';
 import { ProduitServiceService } from '../business/administration/product/produit-service.service';
 import { Product } from '../business/models/product';
 import { PanierServiceService } from '../panier-service.service';
@@ -10,6 +12,18 @@ import { PanierServiceService } from '../panier-service.service';
   styleUrls: ['./choix-produit.component.scss']
 })
 export class ChoixProduitComponent implements OnInit {
+
+/**
+ * dataview
+ */
+    sortOptions: SelectItem[];
+
+    sortOrder: number;
+
+    sortField: string;
+
+    searchField:string;
+
   phoneNumber: string;
   deliveryAddress: string;
   paymentMethod: string;
@@ -34,10 +48,28 @@ test : any ;
 
   }
 
-  ngOnInit(): void {
+  @ViewChild('dv') dv: DataView | undefined;
 
+  ngOnInit(): void {
     this.AfficherListProduct();
   }
+
+  onSortChange(event:any) {
+    let value = event.value;
+
+    if (value.indexOf('!') === 0) {
+        this.sortOrder = -1;
+        this.sortField = value.substring(1, value.length);
+    }
+    else {
+        this.sortOrder = 1;
+        this.sortField = value;
+    }
+}
+
+applyFilter($event:any, stringVal:any) {
+  this.dv!.filter(($event.target as HTMLInputElement).value, 'contains');
+}
   AfficherListProduct(): void {
     this.produitService.getProductService().subscribe((product:any) => {
       this.listProduct = product
