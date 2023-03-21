@@ -11,7 +11,7 @@ public price : number ;
 public images:Image[] ;
 public mainImage:Image;
 public rating:number;
-public category:number
+public category:string;
 
 
 

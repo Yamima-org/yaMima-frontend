@@ -5,6 +5,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
  import {InputTextModule} from 'primeng/inputtext';
  import { DynamicDialogModule } from 'primeng/dynamicdialog';
  import {DropdownModule} from 'primeng/dropdown';
+ import {MultiSelectModule} from 'primeng/multiselect';
  import { InputTextareaModule } from 'primeng/inputtextarea';
  import {ToggleButtonModule} from 'primeng/togglebutton';
  import { MessageModule } from 'primeng/message';
@@ -24,6 +25,7 @@ import {DataViewModule} from 'primeng/dataview';
          InputTextModule,
          DynamicDialogModule,
          DropdownModule,
+         MultiSelectModule,
          InputTextareaModule ,
          ToggleButtonModule,
          MessageModule,
@@ -42,6 +44,7 @@ import {DataViewModule} from 'primeng/dataview';
          InputTextModule,
          DynamicDialogModule,
          DropdownModule,
+         MultiSelectModule,
          InputTextareaModule,
          ToggleButtonModule,
          MessageModule,
