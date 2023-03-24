@@ -55,13 +55,12 @@ export class ChoixProduitComponent implements OnInit {
   tailleProduit: string;
   test: any;
   listProduitSelectionner : any[ ] = [] ;
-  produit : any ; 
+  produit : any ;
   nomProduit : string ;
 @ViewChild('myDialog') myDialog: Dialog;
 
-  constructor(private produitService : ProduitServiceService , private router: Router ,private panierService :PanierServiceService , private messageService : MessageService) { 
-  this.montantTotal = 0; this.quantity = 0 ; 
-
+constructor(private primengConfig: PrimeNGConfig,private produitService : ProduitServiceService , private router: Router ,private panierService :PanierServiceService , private messageService : MessageService) {
+    this.montantTotal = 0; this.quantity = 0 ;
   }
 
   @ViewChild('dv') dv: DataView | undefined;
@@ -83,7 +82,7 @@ export class ChoixProduitComponent implements OnInit {
       summary: summary,
       life: 3000,
     });
-  } 
+  }
   onSortChange(event: any) {
     let value = event.value;
 
@@ -119,7 +118,7 @@ export class ChoixProduitComponent implements OnInit {
 
   }
     showBasicDialog(produit : any ){
-      this.nomProduit = produit.nameproduct ; 
+      this.nomProduit = produit.nameproduct ;
     this.display = true;
 produit.price.setValue('');
 produit.quantite.setValue('');
@@ -131,15 +130,15 @@ produit.nameproduct.setValue('');
 
   }
     ajouterAuPanier(selectedvalue : string ){
-      
+
     let prixTotal = this.quantitePlus();
     let quantite = this.quantity
    let produitSelectionne = { tailleproduit : selectedvalue, prixproduit : prixTotal , nomproduit : this.nomProduit  , quantite : quantite};
     this.listProduitSelectionner.push(produitSelectionne);
-    this.panierService.listProduitSelectionnee = this.listProduitSelectionner ; 
+    this.panierService.listProduitSelectionnee = this.listProduitSelectionner ;
     this.showMessage('success','vous allez trouver vos commande dans le Panier');
-    this.AfficherListProduct() ; 
-    this.closeDialog() ; 
+    this.AfficherListProduct() ;
+    this.closeDialog() ;
       // this.router.navigate(['/service/commande/panier']);
 
   }
