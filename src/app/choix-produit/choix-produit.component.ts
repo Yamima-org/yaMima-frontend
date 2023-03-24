@@ -59,7 +59,7 @@ export class ChoixProduitComponent implements OnInit {
   nomProduit : string ;
 @ViewChild('myDialog') myDialog: Dialog;
 
-constructor(private primengConfig: PrimeNGConfig, private produitService : ProduitServiceService , private router: Router ,private panierService :PanierServiceService , private messageService : MessageService) {
+constructor(private primengConfig: PrimeNGConfig,private produitService : ProduitServiceService , private router: Router ,private panierService :PanierServiceService , private messageService : MessageService) {
     this.montantTotal = 0; this.quantity = 0 ;
   }
 
