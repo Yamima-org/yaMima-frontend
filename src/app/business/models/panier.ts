@@ -1,10 +1,12 @@
+import { Commande } from "./commande";
+
 export class Panier {
 public livraison : string = "Livraison en 30-35 Min"; 
 public lieulivraison : string ; 
-public montanttotal : number ; 
+public montanttotal : any ; 
 public nomcomplet : string ; 
 public mail : string ; 
 public numtel : number ; 
-public paiementmode : string ; 
-public tailleproduit : any ; 
+public modepaiement : string ; 
+public listCommande : Commande[] ; 
 }

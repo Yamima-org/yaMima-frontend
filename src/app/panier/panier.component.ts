@@ -1,16 +1,15 @@
-import { Component, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Dialog } from 'primeng/dialog';
-import { ChoixProduitComponent } from 'src/app/choix-produit/choix-produit.component';
-import { PanierServiceService } from 'src/app/panier-service.service';
-import { Commande } from '../../models/commande';
-import { Panier } from '../../models/panier';
-
+import { Panier } from '../business/models/panier';
+import { Product } from '../business/models/product';
+import { ChoixProduitComponent } from '../choix-produit/choix-produit.component';
+import { PanierServiceService } from '../panier-service.service';
 
 @Component({
   selector: 'app-panier',
   templateUrl: './panier.component.html',
-  styleUrls: ['./panier.component.scss']
+  styleUrls: ['./panier.component.css']
 })
 export class PanierComponent implements OnInit {
   paymentMethods = [ { label: 'Ticket Resteau', value: 'T' },    { label: 'Espéce', value: 'E' }  ];
@@ -21,44 +20,36 @@ export class PanierComponent implements OnInit {
   @ViewChild('myDialog') myDialog: Dialog;
 panier : Panier = new Panier ; 
 tailleProduit : any ; 
-listProduitSelectionne : any []=[]; 
-montantTotal : any ; 
-commande : Commande ;
   constructor(private panierService :PanierServiceService ,private messageService: MessageService) { }
 
   ngOnInit(): void {
-// this.sizeProd() ; 
-// this.quantiteProd()
-this.montantTotal = this.calculerPrixTotal()
+    this.recupererPrixTotal();
+this.sizeProd() ; 
   }
   onSubmit(){}
 
   ngAfterViewInit(): void {
   }
 
- 
+  recupererPrixTotal():void  {
+    this.panier.montanttotal = this.panierService.montantTotal;
+  }
 
-  // sizeProd(){
-  //   this.commande.tailleproduit = this.panierService.tailleproduit ; 
-  //   console.log(this.tailleProduit)
+  sizeProd(){
+    this.panier.tailleproduit = this.panierService.tailleProduit ; 
+    console.log(this.tailleProduit)
 
-  // }
-
-
-  // quantiteProd(){
-  // this.commande.quantite = this.panierService.quantite ; 
-  // }
-
+  }
   closeDialog() {
     this.myDialog.close(new Event(''));
   }
 
   modePaiement(panier: Panier) {
     if (this.selectedValuepayement == "T") {
-      panier.modepaiement = "T"
+      panier.paiementmode = "T"
     }
     else  {
-      panier.modepaiement = "E"
+      panier.paiementmode = "E"
     }
    
   }
@@ -70,22 +61,10 @@ this.montantTotal = this.calculerPrixTotal()
     });
   }
 
-  calculerPrixTotal() : number{ 
-    this.listProduitSelectionne =  this.panierService.listProduitSelectionnee ; 
-
-    this.montantTotal=0 ;
-    for (let produit of this.listProduitSelectionne ) {
-      this.montantTotal += produit["prixproduit"]
-      console.log( this.montantTotal)
-    }
-    return this.montantTotal
-
-}
-    
   
-  sauvegarderCommande(panier : Panier  ){
-  panier.listCommande =  this.panierService.listProduitSelectionnee ; 
-   panier.montanttotal = this.calculerPrixTotal(); 
+  sauvegarderCommande(panier : Panier){
+    this.recupererPrixTotal() ; 
+    this.sizeProd() ; 
     this.modePaiement(panier);
     this.panierService.passerCommande(this.panier).subscribe(
       (response)=>{

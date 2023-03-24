@@ -8,29 +8,37 @@ import { Panier } from './business/models/panier';
   providedIn: 'root'
 })
 export class PanierServiceService {
-  montantTotal: number;
+  montanttotal: number;
   quantite: number;
   panier : Panier ; 
-  tailleProduit : any ; 
+  tailleproduit : any ; 
   selectedValue : any ; 
+  listProduitSelectionnee : any[]= [] ; 
   constructor(private httpClient : HttpClient) { }
 
    
   SizeProd( selectedValue : string ): any{
   if(selectedValue == 'S'){
-    this.tailleProduit = 'S'
+    this.tailleproduit = 'S'
   }
   else if (selectedValue =='M'){
-    this.tailleProduit = 'M'
+    this.tailleproduit = 'M'
   }
   else {
-    this.tailleProduit = 'L'
+    this.tailleproduit = 'L'
   }
 
-    return  this.tailleProduit
-   console.log(this.tailleProduit)
+    return  this.tailleproduit
+   console.log(this.tailleproduit)
    
   }
+
+
+
+
+
+
+
 
 
   passerCommande(panier : Panier):Observable<Panier>{
