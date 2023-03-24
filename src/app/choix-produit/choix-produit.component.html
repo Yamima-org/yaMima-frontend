@@ -10,12 +10,15 @@
           <p-multiSelect [options]="categories" [(ngModel)]="selectedCategories"  defaultLabel="Filtrer par category"  optionLabel="name"
           class="multiselect-custom" (onChange)="filterProducts()">
           <ng-template let-value pTemplate="selectedItems">
+<p-messages></p-messages>
+
             <div class="category-item category-item-value" *ngFor="let option of selectedCategories">
               <div>{{option.name}}</div>
             </div>
             <div *ngIf="!selectedCategories || selectedCategories.length === 0" class="category-placeholder">
               Select Categories
-            </div>
+       
+    </div>
           </ng-template>
           <ng-template let-category pTemplate="item">
             <div class="category-item">
@@ -48,9 +51,9 @@
               [ngClass]="product.statut ? 'product-badge status-instock' : 'product-badge status-outofstock' ">{{product.statut
               ? 'DISPONIBLE' : 'INDISPONIBLE'}}</span>
           </div>
-        </div>
-      </div>
-    </ng-template>
+    </div>
+  </div>      
+  </ng-template>
     <ng-template let-product pTemplate="gridItem">
       <div class="col-12 md:col-4">
         <div class="product-grid-item card">
@@ -73,6 +76,8 @@
             <span class="product-price">${{product.price}}</span>
             <span class="product-description">{{product.ingredients}}</span>
             <p-button icon="pi pi-shopping-cart" [disabled]="!product.statut"></p-button>
+            <p-button (click)="showBasicDialog(produit)" icon="pi pi-plus" label="Commander" iconPos="right" ></p-button>
+
           </div>
         </div>
       </div>
@@ -81,3 +86,44 @@
 
 
   <!-- dataview end -->
+
+
+	  
+	  
+	  
+  <p-dialog [(visible)]="display" [style]="{width: '50vw'}" [baseZIndex]="10000" #myDialog >
+
+
+<div class="dialog" *ngFor="let produit of listProduct">
+  <div class="product-details" *ngFor="let image of produit.images">
+    <img [src]="image.url" alt="Product 1">
+    <h3>{{produit.nameproduct}}</h3>
+    <p>{{produit.description}}<span class="rating">
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+    </span></p>
+   
+    <p class="delivery-time">Temps de Livraison : 30-45 Minutes </p>
+    <span class="p-float-label">
+      <h4>Taille DU Produit </h4>
+      <p-dropdown [options]="selectedSize"  placeholder="-- SÃ©lectionnez une option --"
+        [(ngModel)]="selectedValue" optionLabel="label" [required]="true"></p-dropdown>
+      <div class="error-message">Champ Obligatoire*</div>
+
+    </span>
+    <p class="price">Prix : {{montantTotal}}D</p>
+    
+    <button class="minus-btn" (click)="quantitemoin()">-</button>
+    <input type="text" class="quantity-input" [(ngModel)]="quantity" />
+    <button class="plus-btn" (click)="quantitePlus()">+</button>
+    
+  </div>
+</div>      
+<ng-template pTemplate="footer">
+  <p-button icon="pi pi-check"  (click)="ajouterAuPanier(selectedValue)" label="Ajouter au Pannier" styleClass="p-button-text" ></p-button>
+  <p-button icon="pi pi-times" (click)="closeDialog()" label="Annuler"></p-button>
+</ng-template>
+</p-dialog> 

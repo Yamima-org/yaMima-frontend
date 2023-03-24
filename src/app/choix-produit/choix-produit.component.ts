@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { PrimeNGConfig, SelectItem } from 'primeng/api';
 import { DataView } from 'primeng/dataview';
+import { MessageService } from 'primeng/api';
+import { Dialog } from 'primeng/dialog';
 import { ProduitServiceService } from '../business/administration/product/produit-service.service';
 import { Product } from '../business/models/product';
 import { PanierServiceService } from '../panier-service.service';
@@ -52,9 +54,13 @@ export class ChoixProduitComponent implements OnInit {
   montantTotal: number;
   tailleProduit: string;
   test: any;
+  listProduitSelectionner : any[ ] = [] ;
+  produit : any ; 
+  nomProduit : string ;
+@ViewChild('myDialog') myDialog: Dialog;
 
-  constructor(private primengConfig: PrimeNGConfig, private produitService: ProduitServiceService, private router: Router, private panierService: PanierServiceService) {
-    this.montantTotal = 0;
+  constructor(private produitService : ProduitServiceService , private router: Router ,private panierService :PanierServiceService , private messageService : MessageService) { 
+  this.montantTotal = 0; this.quantity = 0 ; 
 
   }
 
@@ -70,6 +76,14 @@ export class ChoixProduitComponent implements OnInit {
     this.AfficherListProduct();
   }
 
+
+  showMessage(severity: string, summary: string) {
+    this.messageService.add({
+      severity: severity,
+      summary: summary,
+      life: 3000,
+    });
+  } 
   onSortChange(event: any) {
     let value = event.value;
 
@@ -104,14 +118,29 @@ export class ChoixProduitComponent implements OnInit {
     })
 
   }
-  showBasicDialog() {
+    showBasicDialog(produit : any ){
+      this.nomProduit = produit.nameproduct ; 
     this.display = true;
+produit.price.setValue('');
+produit.quantite.setValue('');
+produit.size.setValue('');
+produit.nameproduct.setValue('');
+    }
+    closeDialog(){
+      this.myDialog.close(new Event(''));
 
   }
-  closeDialog() { }
-  ajouterAuPanier() {
-    this.sizeProduit()
-    this.router.navigate(['/service/commande/panier']);
+    ajouterAuPanier(selectedvalue : string ){
+      
+    let prixTotal = this.quantitePlus();
+    let quantite = this.quantity
+   let produitSelectionne = { tailleproduit : selectedvalue, prixproduit : prixTotal , nomproduit : this.nomProduit  , quantite : quantite};
+    this.listProduitSelectionner.push(produitSelectionne);
+    this.panierService.listProduitSelectionnee = this.listProduitSelectionner ; 
+    this.showMessage('success','vous allez trouver vos commande dans le Panier');
+    this.AfficherListProduct() ; 
+    this.closeDialog() ; 
+      // this.router.navigate(['/service/commande/panier']);
 
   }
   quantitemoin(): any {
@@ -124,7 +153,7 @@ export class ChoixProduitComponent implements OnInit {
       } else if (this.selectedValue === 'L') {
         this.montantTotal = 60 * this.quantity;
       }
-      this.panierService.montantTotal = this.montantTotal;
+        this.panierService.montanttotal = this.montantTotal;
       this.panierService.quantite = this.quantity;
       return this.montantTotal
     }
@@ -141,7 +170,7 @@ export class ChoixProduitComponent implements OnInit {
       this.montantTotal = 60 * this.quantity;
     }
     console.log(this.montantTotal)
-    this.panierService.montantTotal = this.montantTotal;
+      this.panierService.montanttotal = this.montantTotal;
     this.panierService.quantite = this.quantity;
     return this.montantTotal
   }
