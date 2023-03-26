@@ -57,6 +57,10 @@ export class ChoixProduitComponent implements OnInit {
   listProduitSelectionner : any[ ] = [] ;
   produit : any ;
   nomProduit : string ;
+  produitSelectionne : any = {} ;
+  static readonly Q_MOIN : string = "Q_MOIN" ; 
+  static readonly Q_PLUS : string = "Q_PLUS" ; 
+
 @ViewChild('myDialog') myDialog: Dialog;
 
 constructor(private primengConfig: PrimeNGConfig, private produitService : ProduitServiceService , private router: Router ,private panierService :PanierServiceService , private messageService : MessageService) {
@@ -118,22 +122,21 @@ constructor(private primengConfig: PrimeNGConfig, private produitService : Produ
 
   }
     showBasicDialog(produit : any ){
-      this.nomProduit = produit.nameproduct ;
+      this.produitSelectionne = produit ; 
+      this.selectedValue = null ; 
+      this.montantTotal = 0 ;
+      this.quantity = 0 ;
     this.display = true;
-produit.price.setValue('');
-produit.quantite.setValue('');
-produit.size.setValue('');
-produit.nameproduct.setValue('');
     }
     closeDialog(){
       this.myDialog.close(new Event(''));
 
   }
-    ajouterAuPanier(selectedvalue : string ){
+    ajouterAuPanier( ){
 
-    let prixTotal = this.quantitePlus();
+    let prixTotal = this.montantTotal;
     let quantite = this.quantity
-   let produitSelectionne = { tailleproduit : selectedvalue, prixproduit : prixTotal , nomproduit : this.nomProduit  , quantite : quantite};
+   let produitSelectionne = { tailleproduit : this.selectedValue.value, prixproduit : prixTotal , nomproduit : this.produitSelectionne.nameproduct  , quantite : quantite};
     this.listProduitSelectionner.push(produitSelectionne);
     this.panierService.listProduitSelectionnee = this.listProduitSelectionner ;
     this.showMessage('success','vous allez trouver vos commande dans le Panier');
@@ -142,37 +145,32 @@ produit.nameproduct.setValue('');
       // this.router.navigate(['/service/commande/panier']);
 
   }
-  quantitemoin(): any {
-    if (this.quantity > 1) {
-      this.quantity--;
-      if (this.selectedValue === 'S') {
-        this.montantTotal = 20 * this.quantity;
-      } else if (this.selectedValue === 'M') {
-        this.montantTotal = 40 * this.quantity;
-      } else if (this.selectedValue === 'L') {
-        this.montantTotal = 60 * this.quantity;
-      }
-        this.panierService.montanttotal = this.montantTotal;
-      this.panierService.quantite = this.quantity;
-      return this.montantTotal
-    }
-  }
+ 
+  
 
-  quantitePlus(): any {
+    
+  onChangeQuantite(quantite : string ) {
+    if(quantite == "Q_MOIN"){
+        this.quantity--;
+        }
+        else if (quantite == "Q_PLUS"){
+          this.quantity++;
+        }
+        this.calculeMontant();
 
-    this.quantity++;
-    if (this.selectedValue === 'S') {
-      this.montantTotal = 20 * this.quantity;
-    } else if (this.selectedValue === 'M') {
-      this.montantTotal = 40 * this.quantity;
-    } else if (this.selectedValue === 'L') {
-      this.montantTotal = 60 * this.quantity;
     }
-    console.log(this.montantTotal)
-      this.panierService.montanttotal = this.montantTotal;
+  private calculeMontant() {
+    if (this.selectedValue.value === 'S') {
+      this.montantTotal = this.produitSelectionne.price * 1.2 * this.quantity;
+    } else if (this.selectedValue.value === 'M') {
+      this.montantTotal = this.produitSelectionne.price * 1.4 * this.quantity;
+    } else if (this.selectedValue.value === 'L') {
+      this.montantTotal = this.produitSelectionne.price * 1.6 * this.quantity;
+    }
+    this.panierService.montanttotal = this.montantTotal;
     this.panierService.quantite = this.quantity;
-    return this.montantTotal
   }
+
 
 
   sizeProduit() {
